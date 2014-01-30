@@ -3,6 +3,7 @@ import re
 import HTMLParser
 import nltk.data
 import string
+import NLPlib
 
 def preprocessing_input(input_line):
     return None
@@ -26,6 +27,7 @@ def break_line(input_line):
     return None
 
 def my_lame_break_line(input_line,abbrev_list):
+    # have not consider the case sentense in quotation
     ending_punc = ['.','?','!']
     input_list = input_line.strip().split()
     elem_list = []
@@ -42,26 +44,42 @@ def my_lame_break_line(input_line,abbrev_list):
 def is_abbrev(word_token, abbrev_list):
     return (word_token in abbrev_list)
 
-def is_clitic():
+def is_noun(word_token):
     return None
 
-def separate_multiple_puncutaion(word_with_punc):
+def separate_punctuation(word_token):
     return None
 
-def tokenize_sentense(sentense_list):
-    token_list = []
+def is_possession(word_token, next_token):
+    i = word_token.find("'")
+    if i != len(word_token) - 2:
+        if word_token[i+1] == 's':
+            return is_noun(next_token)
+        else:
+            # it is clitic
+            return False
+    else:
+        # no idea what it is
+        return False
+
+def tokenize_and_tag_sentense(sentense_list):
+    token_list_list = []
     for sentense in sentense_list:
-        sentesnse_list = sentense.split()
-        for elem in sentense_list:
-            if elem[-1] in string.punctuation:
-                token_list.append(elem[0:-1])
-                token_list.append(elem[-1])
-            else:
-                token_list.append(elem)
-    return None
+        token_list = re.findall(r"[\w']+|[.,!?;]+", sentense)
+        for i in range(len(token_list)):
+            if i < len(token_list) - 1:
+                if is_possession(token_list[i],token_list[i+1]):
+                    token_list = token_list[:i] + \
+                    re.findall(r"[\w]+|['s]", token_list[i]) +\
+                    token_list[i+1:]
+    return token_list_list
+
 
 def tag_tokens(token_list):
-    return None
+    tagger = NLPLib.NLPlib()
+    tags = tagger.tag(token_list)
+    return tag_sentense = " ".join(tags)
+
 
 if __name__ == '__main__':
     file_name = sys.argv[1]
@@ -77,22 +95,3 @@ if __name__ == '__main__':
     line = tweet_file.readline()
 
     temp_line = "";
-    #break the sentense within the tweets.
-    #for element in new_line.split():
-        #if element not in abbrev_list:
-            #break the line
-
-        #else:
-            #temp_line = temp_line +  " " + element
-          
-
-            #do not break the line
-    
-    #while line != '' : 
-        
-    #for line in tweet_file:
-        #print(line)
-        #line = tweet_file.readline()
-
-
-    
