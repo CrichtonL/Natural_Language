@@ -44,13 +44,10 @@ def my_lame_break_line(input_line,abbrev_list):
 def is_abbrev(word_token, abbrev_list):
     return (word_token in abbrev_list)
 
-def is_noun(word_token):
-    return None
-
-def separate_punctuation(word_token):
-    return None
 
 def is_possession(word_token, next_token):
+    # this function still need to be modified as 
+    # possesive ending could be a single "'"
     i = word_token.find("'")
     if i != len(word_token) - 2:
         if word_token[i+1] == 's':
