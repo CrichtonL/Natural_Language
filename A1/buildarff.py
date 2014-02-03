@@ -155,5 +155,31 @@ def extract_num_of_whwords(tag_list, total_num):
 def extract_num_of_slangs():
 	return None
 
+def average_len_of_sentense():
+	return None
+
+def average_len_of_tokens():
+	return None
+
+def num_of_sentense():
+	return None
+
+
 
 if __name__ == "__main__":
+	file_input = sys.argv[1]
+    file_output = sys.argv[2]
+    tweet_file = open(file_input,'r')
+    revised_file = open(file_output, 'w')
+
+
+    for line in tweet_file:
+    	num_of_sentense = 0
+    	num_of_tokens = 0
+    	total_len_of_sentense = 0
+    	total_len_of_token = 0
+    	if line != "|":
+    		line_list = line.strip().split()
+    		token_list = map(lambda x: re.sub(r"/[\w]+"), token_list)
+
+
