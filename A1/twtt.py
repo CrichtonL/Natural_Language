@@ -62,9 +62,11 @@ def is_abbrev(word_token, abbrev_list):
 
 def tokenize_sentense(sentense_list):
     token_list_list = []
+    reg = r"n't|'ll |@[^\s]+|[0-9,]+.[0-9]+|[0-9,]+|[0-9]+% |" + \
+          r"(?:[A-Z]\.)+|\w+(?=n't )|[\w&]+|'\w |[.,!?;:$-()]+|['\"]+"
     for sentense in sentense_list:
         # not perfect, still have not covered the case of s' which is a sign of possession
-        token_list = re.findall(r"n't|@[^\s]+|[0-9,]+.[0-9]+|[0-9,]+|[0-9]+% |(?:[A-Z]\.)+|[\w&]+|'\w |[.,!?;:$-]+|['\"]+", sentense)
+        token_list = re.findall(reg,sentense)
         token_list = map(lambda x: x.strip(), token_list)
         for i in range(len(token_list)):
             if token_list[i][0] == "@":

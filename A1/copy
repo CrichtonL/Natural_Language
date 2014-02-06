@@ -1,0 +1,49 @@
+
+	# initializer slang list
+	slang_list = []
+    for line in slange_file:
+        slang_list.append(line.strip().lower())
+    print abbrev_list
+
+	for line in tweet_file:
+		if line.strip() == "|":
+			num_of_tweet += 1
+			if num_of_tweet == max_tweet_num:
+				break
+		else:
+			tagged_token_list = line.strip().split()
+			future_tense_verb += extract_future_verbs(tagged_token_list)
+			token_list = []
+			tag_list = []
+			#initialize tag list and token list
+			for tagged_token in sentense_list:
+				r = re.findall(r"[^/]+",tagged_token)
+
+				total_len_of_token + len(r[0])
+
+				token_list.append(r[0])
+				tag_list.append(r[1])
+
+			num_of_sentense += 1
+			num_of_tokens += len(token_list)
+
+			for i in range(len(tagged_token_list)):
+				token = token_list[i]
+				tag = tag_list[i]
+
+				#extracting features
+				first_person_pronouns += is_first_person_pronoun(token)
+				second_person_pronouns += is_second_person_pronoun(token)
+				third_person_pronouns += is_third_person_pronoun(token)
+				coord_conj += is_coordinating_conjunction(token)
+				past_tense_verb += is_past_verbs(tag)
+				commas_num += is_commas(token)
+				colons_and_semi_colons += is_colon_or_semi_colon(token)
+				dash_num += is_dash(token)
+				paren_num += is_parentheses(token)
+				ellipses_num += is_ellipses(token)
+				common_nouns += is_common_noun(tag)
+				proper_nouns += is_proper_noun(tag)
+				adverb_num += is_adverb(tag)
+				whwords_num += is_whword(token)
+				slang_num += is_slang(token)
