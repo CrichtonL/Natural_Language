@@ -55,6 +55,8 @@ def my_lame_break_line(input_line,abbrev_list):
         else:
             elem_list.append(elem)
         next_index += 1
+    if len(elem_list) > 0:
+        sentense_list.append(" ".join(elem_list))
     return sentense_list
 
 def is_abbrev(word_token, abbrev_list):
@@ -62,10 +64,9 @@ def is_abbrev(word_token, abbrev_list):
 
 def tokenize_sentense(sentense_list):
     token_list_list = []
-    reg = r"n't|'ll |@[^\s]+|[0-9,]+.[0-9]+|[0-9,]+|[0-9]+% |" + \
-          r"(?:[A-Z]\.)+|\w+(?=n't )|[\w&]+|'\w |[.,!?;:$-()]+|['\"]+"
+    reg = r"n't|'ll|@[^\s]+|[0-9,]+[0-9]+\.[0-9]+|[0-9,]+[0-9]+|[0-9]+|" + \
+          r"(?:[A-Z]\.)+|\w+(?=n't)|[\w]+|'\w |[.,&!?;:$-()%]+|['\"]+"
     for sentense in sentense_list:
-        # not perfect, still have not covered the case of s' which is a sign of possession
         token_list = re.findall(reg,sentense)
         token_list = map(lambda x: x.strip(), token_list)
         for i in range(len(token_list)):
@@ -91,11 +92,16 @@ if __name__ == '__main__':
     abbrev_english = "abbrev.english"
     tweet_file = open(file_input,'r')
     abbrev_file = open(abbrev_english, 'r')
+    extra_abbrev_file = open("extra_abbrev.english",'r')
     revised_file = open(file_output, 'w')
 
     abbrev_list = []
     for line in abbrev_file:
         abbrev_list.append(line.strip().lower())
+    for line in extra_abbrev_file:
+        abbrev = line.strip()
+        if abbrev not in abbrev_list:
+            abbrev_list.append(abbrev)
     print abbrev_list
 
     counter = 0    
@@ -113,4 +119,9 @@ if __name__ == '__main__':
         tag_list_list = tag_tokens(token_list_list)
         for tag_list in tag_list_list:
             print  >> revised_file, " ".join(tag_list)
+
+    abbrev_file.close()
+    extra_abbrev_file.close()
+    tweet_file.close()
+    revised_file.close()
 
