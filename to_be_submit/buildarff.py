@@ -222,18 +222,18 @@ if __name__ == "__main__":
 	for class_name in classes:
 		files = class_files[class_index]
 		open_files = []
-		#open all files for this class
+		# open all files for this class
 		for file_name in files:
 			open_files.append(open(file_name,'r'))
 		for twt_file in open_files:
 			num_of_tweet = 0
-			#processing the file
+			# processing the file
 			for line in twt_file:
 				if num_of_tweet == max_tweet_num:
 						break
 				elif line.strip() == "|":
 					# end of the tweet, print all collected stats to arff file if
-					# ignore the empty tweet after normalization
+					# if the tweet is empty after normalization, ignore it
 					if num_of_sentense != 0:
 						STATS[FEATURES.index("avg_len_of_sentense")] = float(num_of_tokens)/num_of_sentense
 						if num_of_of_non_punc != 0:	
