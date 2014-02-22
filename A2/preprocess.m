@@ -40,7 +40,7 @@ function outSentence = preprocess( inSentence, language )
   switch language
    case 'e'
     % TODO: your code here
-    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|(\w\.)+|\w+|''\w |[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
+    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w |[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
     outSentence = regexp(outSentence, reg, 'match'); 
    case 'f'
     % TODO: your code here
@@ -50,3 +50,5 @@ function outSentence = preprocess( inSentence, language )
 
   % change unpleasant characters to codes that can be keys in dictionaries
   outSentence = convertSymbols( outSentence );
+  outSentence = sprintf('%s ' ,outSentence{:});
+  outSentence = strtrim(outSentence)

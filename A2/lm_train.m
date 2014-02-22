@@ -36,7 +36,7 @@ SENTSTARTMARK = 'SENTSTART';
 SENTENDMARK = 'SENTEND';
 
 DD = dir( [ dataDir, filesep, '*', language] );
-
+DD
 disp([ dataDir, filesep, '.*', language] );
 
 for iFile=1:length(DD)
@@ -47,10 +47,27 @@ for iFile=1:length(DD)
 
     processedLine =  preprocess(lines{l}, language);
     words = strsplit(' ', processedLine );
-    
-    % TODO: THE STUDENT IMPLEMENTS THE FOLLOWING
+	words = words(1,2:length(words)-1)
 
-    % TODO: THE STUDENT IMPLEMENTED THE PRECEDING
+    for w=1:(length(words)-1)
+    	word = words{1,w};
+    	next_word = words{1,w+1}
+    	if isfield(LM.uni,word) == 1   		
+    		LM.uni.(word) = LM.uni.(word) + 1;
+    		if isfield(LM.bi.(word),next_word) == 1;
+    			LM.bi.(word).(next_word) = LM.bi.(word).(next_word) + 1;
+    		end
+    	else
+    		LM.uni.(word) = 1;
+    		LM.bi.(word) = struct();
+    		LM.bi.(word).(next_word) = 1;
+    	end
+    end
+    if isfield(LM.uni,words{1,length(words)}) == 1   		
+    	LM.uni.(words{1,length(words)}) = LM.uni.(words{1,length(words)}) + 1
+    else
+    	LM.uni.(words{1,length(words)}) = 1
+    end
   end
 end
 
