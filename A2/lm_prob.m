@@ -48,8 +48,6 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
 
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
-   % TODO: the student implements the following
-  % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
   
   names = fieldnames(LM.uni);
   total_word_count = 0;
