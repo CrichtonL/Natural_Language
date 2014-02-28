@@ -35,23 +35,23 @@ LM.bi = struct();
 SENTSTARTMARK = 'SENTSTART'; 
 SENTENDMARK = 'SENTEND';
 
-DD = dir( [ dataDir, filesep, '*', language] );
-DD
-disp([ dataDir, filesep, '.*', language] );
+DD = dir( [ dataDir, filesep, '*.', language] );
+
+disp([ dataDir, filesep, '*.', language] );
 
 for iFile=1:length(DD)
-
+  DD(iFile).name
   lines = textread([dataDir, filesep, DD(iFile).name], '%s','delimiter','\n');
 
   for l=1:length(lines)
 
     processedLine =  preprocess(lines{l}, language);
-    words = strsplit(' ', processedLine );
-	words = words(1,2:length(words)-1)
-
+    words = strsplit(' ', processedLine )
+	words = words(2:length(words)-1)
+    % process the one with next word
     for w=1:(length(words)-1)
     	word = words{1,w};
-    	next_word = words{1,w+1}
+    	next_word = words{1,w+1};
     	if isfield(LM.uni,word) == 1   		
     		LM.uni.(word) = LM.uni.(word) + 1;
     		if isfield(LM.bi.(word),next_word) == 1;
@@ -61,14 +61,19 @@ for iFile=1:length(DD)
     		LM.uni.(word) = 1;
     		LM.bi.(word) = struct();
     		LM.bi.(word).(next_word) = 1;
+
     	end
     end
+    % process the last one
     if isfield(LM.uni,words{1,length(words)}) == 1   		
-    	LM.uni.(words{1,length(words)}) = LM.uni.(words{1,length(words)}) + 1
+    	LM.uni.(words{length(words)}) = LM.uni.(words{length(words)}) + 1;
     else
-    	LM.uni.(words{1,length(words)}) = 1
+    	LM.uni.(words{length(words)}) = 1;
+        LM.bi.(words{length(words)}) = struct();
     end
+
   end
+
 end
 
 save( fn_LM, 'LM', '-mat'); 

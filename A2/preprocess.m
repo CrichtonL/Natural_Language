@@ -29,7 +29,7 @@ function outSentence = preprocess( inSentence, language )
   inSentence = regexprep( inSentence, '\s+', ' '); 
 
   % initialize outSentence
-  outSentence = inSentence;
+  outSentence = inSentence
 
   
 
@@ -40,7 +40,7 @@ function outSentence = preprocess( inSentence, language )
   switch language
    case 'e'
     % TODO: your code here
-    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w |[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
+    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w(?= )|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
     outSentence = regexp(outSentence, reg, 'match'); 
    case 'f'
     % TODO: your code here

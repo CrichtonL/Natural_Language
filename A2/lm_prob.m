@@ -48,4 +48,28 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
 
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
+   % TODO: the student implements the following
+  % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
+  
+  names = fieldnames(LM.uni);
+  total_word_count = 0;
+  for i=1:vocabSize
+    total_word_count = total_word_num + LM.uni.(names{i});
+  end 
+  %initialize the probability
+  probability = LM.uni.(words{1})/total_word_count;
+
+  for j=2:length(words)
+    w_1 = words{j-1}
+    w_2 = words{j}
+    if isfield(LM.bi.(w_1),w_2)==1
+      probability = probability * (LM.bi.(w2)/LM.uni.(w2));
+    else
+      probability = 0;
+      break;
+    end
+  end
+
+  logProb = log2(probability);
+
 return
