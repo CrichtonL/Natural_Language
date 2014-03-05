@@ -46,8 +46,8 @@ for iFile=1:length(DD)
   for l=1:length(lines)
 
     processedLine =  preprocess(lines{l}, language);
-    words = strsplit(' ', processedLine )
-	words = words(2:length(words)-1)
+    words = strsplit(' ', processedLine );
+	words = words(2:length(words)-1);
     % process the one with next word
     for w=1:(length(words)-1)
     	word = words{1,w};

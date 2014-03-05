@@ -74,5 +74,4 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   end
 
   logProb = log2(probability);
-
-return
+  

@@ -29,7 +29,7 @@ function outSentence = preprocess( inSentence, language )
   inSentence = regexprep( inSentence, '\s+', ' '); 
 
   % initialize outSentence
-  outSentence = inSentence
+  outSentence = inSentence;
 
   
 
@@ -45,11 +45,11 @@ function outSentence = preprocess( inSentence, language )
    case 'f'
     % TODO: your code 
     % add more ciriteria
-    reg = 'l''|qu''|\w+''(?=on)|\w+''(?=il)|\w''|[0-9,]+[0-9]+\.[0-9]+|(\w\.)+|\w+|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
+    reg = 'l''|qu''|\w+''(?=on)|\w+''(?=il)|\w''|[0-9,]+[0-9]+\.[0-9]+|(\w\.)+|\w+|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
     outSentence = regexp(outSentence, reg, 'match');
   end
 
   % change unpleasant characters to codes that can be keys in dictionaries
   outSentence = convertSymbols( outSentence );
   outSentence = sprintf('%s ' ,outSentence{:});
-  outSentence = strtrim(outSentence)
+  outSentence = strtrim(outSentence);

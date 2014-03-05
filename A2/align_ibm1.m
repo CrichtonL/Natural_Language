@@ -72,11 +72,29 @@ function [eng, fre] = read_hansard(dir, numSentences)
 %
 %         eng{i} = strsplit(' ', preprocess(english_sentence, 'e'));
 %
-  %eng = {};
-  %fre = {};
+  eng = {};
+  fre = {};
 
   % TODO: your code goes here.
 
+  DD_f = dir( [ dir, filesep, '*.', 'f'] );
+  DD_e = dir( [ dir, filesep, '*.', 'e'] );
+
+  disp([ dir, filesep, '*.', language] );
+  % DD_f and DD_e should have the same length
+  for iFile=1:length(DD_f)
+    DD_e(iFile).name
+    DD_f(iFile).name
+    e_lines = textread([dir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
+    f_lines = textread([dir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
+
+    for l=1:numSentences
+      nglish_sentence = e_lines{l};
+      french_sentence = f_lines{l};
+      eng{i} = strsplit(' ', preprocess(english_sentence, 'e'));
+      fre{i} = strsplit(' ', preprocess(french_sentence, 'f'));
+    end
+  end
 end
 
 
