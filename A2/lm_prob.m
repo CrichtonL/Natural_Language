@@ -49,13 +49,18 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
   
+  %have not considered smoothing
   names = fieldnames(LM.uni);
   total_word_count = 0;
-  for i=1:vocabSize
+
+
+  for i=1:length(names)
     total_word_count = total_word_num + LM.uni.(names{i});
   end 
+
+
   %initialize the probability
-  probability = LM.uni.(words{1})/total_word_count;
+  probability = (LM.uni.(words{1})+delta)/(total_word_count)+vocabSize;
 
   for j=2:length(words)
     w_1 = words{j-1}
