@@ -46,6 +46,7 @@ function outSentence = preprocess( inSentence, language )
     % TODO: your code 
     % add more ciriteria
     reg = 'l''|qu''|\w+''(?=on)|\w+''(?=il)|\w''|[0-9,]+[0-9]+\.[0-9]+|(\w\.)+|\w+|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
+    reg = ['d''aboard|d''accord|d''ailleurs|d''habitude|',reg]
     outSentence = regexp(outSentence, reg, 'match');
   end
 
