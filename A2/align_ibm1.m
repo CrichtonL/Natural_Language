@@ -161,29 +161,52 @@ function t = em_step(t, eng, fre)
 %
   
   % TODO: your code goes here
-  total = {};
-  history = {};
-  e_words = fieldnames(AM);
 
-  for i=1:length(e_words)
-    tcount.(e_words{i}) = 0;
+  total = {};
+  tcount = {};
+
+  f_history = {};
+  e_history = {};
+  e_fieldnames = fieldnames(t);
+  % initialize tcount and total
+  for i=1:length(e_fieldnames)
+    e = e_fieldnames{i};
+    total.(e) = 0;
+    tcount.(e) = {};
+    f_fieldnames = fieldnames(t.(e));
+    for j=1:length(f_fieldnames)
+      tcount.(e).(f_fieldnames(j)) = 0;
+    end
   end
 
   for l=1:length(eng)
     english_words = eng{l};
-    wc = count_unique_word(english_words);
     french_words = fre{l};
+    wc_e = count_unique_word(english_words);
+    wc_f = count_unique_word(french_words);
     for w_f=2:length(french_words)-1
         f_word = french_words{w_f};
-        if isfield(history,f_word) ~= 1
-          %record history
-          history.(f_word) = 1;
+        if isfield(f_history,f_word) ~= 1
+          % record history
+          f_history.(f_word) = 1;
           denom_c = 0;
           for w_e=2:length(english_words)-1
             e_word = english_words{w_e};
-            denom_c = denom_c + t.(e_word).(f_word) * wc.(e_word);
+            if isfield(e_history,e_word) ~= 1
+              e_history.(e_word) = 1;
+              denom_c = denom_c + t.(e_word).(f_word) * wc_f.(f_word);
+            end
           end
-          % to be continued
+          % clear history
+          e_history = {};
+          for w_e=2:length(english_words)-1
+            e_word = english_words{w_e};
+            if isfield(e_history,e_word) ~= 1
+              e_history.(e_word) = 1;
+              tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
+              total.(e_word) =  total(e_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
+            end
+          end
 
         end
     end
