@@ -44,7 +44,6 @@ for iFile=1:length(DD)
   lines = textread([dataDir, filesep, DD(iFile).name], '%s','delimiter','\n');
 
   for l=1:length(lines)
-
     processedLine =  preprocess(lines{l}, language);
     words = strsplit(' ', processedLine );
 	words = words(2:length(words)-1);
@@ -61,7 +60,6 @@ for iFile=1:length(DD)
     		LM.uni.(word) = 1;
     		LM.bi.(word) = struct();
     		LM.bi.(word).(next_word) = 1;
-
     	end
     end
     % process the last one

@@ -89,12 +89,13 @@ function [eng, fre] = read_hansard(dir, numSentences)
     f_lines = textread([dir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
 
     for l=1:numSentences
-      nglish_sentence = e_lines{l};
+      english_sentence = e_lines{l};
       french_sentence = f_lines{l};
       eng{i} = strsplit(' ', preprocess(english_sentence, 'e'));
       fre{i} = strsplit(' ', preprocess(french_sentence, 'f'));
     end
   end
+
 end
 
 
@@ -103,18 +104,99 @@ function AM = initialize(eng, fre)
 % Initialize alignment model uniformly.
 % Only set non-zero probabilities where word pairs appear in corresponding sentences.
 %
-    AM = {}; % AM.(english_word).(foreign_word)
+% TODO: your code goes here
+  AM = {}; % AM.(english_word).(foreign_word)
 
-    % TODO: your code goes here
+  AM.SENTSTART.SENTSTART = 1;
+  AM.SENTEND.SENTEND = 1;
+
+  for l=1:length(eng)
+    english_words = eng{l};
+    %english_words = english(2:length(english_words)-1);
+    french_words = fre{l};
+    %french_words = french_words(2:length(french_words)-1);
+    for w_e =2:length(english_words)-1
+
+      e_word = english_words{w_e};
+
+      if isfield(AM,e_word) ~= 1
+        AM.(e_word) = {};
+      end
+
+      for w_f=2::length(french_words)-1
+
+        f_word = french_words{w_f};
+
+        if isfield(AM.(e_word),f_word) ~= 1
+           AM.(e_word).(f_word) = 1 / (length(fre) - 2);
+        end
+
+        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + length(fre) - 2)%ingnore SENTSTART and SENTEND
+      end
+    end
+  end
 
 end
 
+%
+% helper function for counting the occurence of a specific word 
+%
+
+function wc = count_unique_word(words)
+  wc = {};
+  for w=2:length(words)-1
+    word = words{w};
+    if isfield(wc,f_word) ~= 1
+      wc.(word) = 1;
+    end
+    wc.(word) = wc.(word) + 1;
+  end
+end
+
 function t = em_step(t, eng, fre)
+
+
 % 
 % One step in the EM algorithm.
 %
   
   % TODO: your code goes here
+  total = {};
+  history = {};
+  e_words = fieldnames(AM);
+
+  for i=1:length(e_words)
+    tcount.(e_words{i}) = 0;
+  end
+
+  for l=1:length(eng)
+    english_words = eng{l};
+    wc = count_unique_word(english_words);
+    french_words = fre{l};
+    for w_f=2:length(french_words)-1
+        f_word = french_words{w_f};
+        if isfield(history,f_word) ~= 1
+          %record history
+          history.(f_word) = 1;
+          denom_c = 0;
+          for w_e=2:length(english_words)-1
+            e_word = english_words{w_e};
+            denom_c = denom_c + t.(e_word).(f_word) * wc.(e_word);
+          end
+          % to be continued
+
+        end
+    end
+  end
+
+
+
 end
+
+
+
+
+
+
 
 
