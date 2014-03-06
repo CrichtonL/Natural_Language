@@ -115,6 +115,8 @@ function AM = initialize(eng, fre)
     %english_words = english(2:length(english_words)-1);
     french_words = fre{l};
     %french_words = french_words(2:length(french_words)-1);
+    num_unique_eng_words = num_unique_words(english_words);
+    num_unique_fr_words = num_unique_words(french_words);
     for w_e =2:length(english_words)-1
 
       e_word = english_words{w_e};
@@ -123,19 +125,35 @@ function AM = initialize(eng, fre)
         AM.(e_word) = {};
       end
 
-      for w_f=2::length(french_words)-1
+      for w_f=2:length(french_words)-1
 
         f_word = french_words{w_f};
 
         if isfield(AM.(e_word),f_word) ~= 1
-           AM.(e_word).(f_word) = 1 / (length(fre) - 2);
+           AM.(e_word).(f_word) = 1 / num_unique_fr_words;
         end
 
-        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + length(fre) - 2)%ingnore SENTSTART and SENTEND
+        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words)%ingnore SENTSTART and SENTEND
       end
     end
   end
 
+end
+
+%
+% helper function for counting number of unique words in a sentense 
+%
+
+function num_u = num_unique_words(words)
+  wc = {};
+  num_u = 0;
+  for w=2:length(words)-1
+    word = words{w};
+    if isfield(wc,f_word) ~= 1
+      wc.(word) = 1;
+      num_u = num_u  + 1;
+    end
+  end
 end
 
 %
@@ -165,8 +183,7 @@ function t = em_step(t, eng, fre)
   total = {};
   tcount = {};
 
-  f_history = {};
-  e_history = {};
+
   e_fieldnames = fieldnames(t);
   % initialize tcount and total
   for i=1:length(e_fieldnames)
@@ -184,6 +201,9 @@ function t = em_step(t, eng, fre)
     french_words = fre{l};
     wc_e = count_unique_word(english_words);
     wc_f = count_unique_word(french_words);
+    % struct to keep track of 
+    f_history = {};
+    e_history = {};
     for w_f=2:length(french_words)-1
         f_word = french_words{w_f};
         if isfield(f_history,f_word) ~= 1
@@ -203,23 +223,23 @@ function t = em_step(t, eng, fre)
             e_word = english_words{w_e};
             if isfield(e_history,e_word) ~= 1
               e_history.(e_word) = 1;
+              % tcount and total have different value because tcount is added for a unique e_word f_word pair, but 
+              % taotal is added for each unique e for each sentense
               tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
-              total.(e_word) =  total(e_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
+              total.(e_word) =  total.(e_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
             end
           end
-
         end
+
     end
   end
 
-
-
+  for i=1:length(e_fieldnames)
+    e = e_fieldnames{i};
+    f_fieldnames = fieldnames(t.(e));
+    for j=1:length(f_fieldnames)
+      f = f_fieldnames(j);
+      t.(e).(f) = tcount.(e).(f) / total.(e);
+    end
+  end
 end
-
-
-
-
-
-
-
-
