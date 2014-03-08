@@ -40,13 +40,14 @@ function outSentence = preprocess( inSentence, language )
   switch language
    case 'e'
     % TODO: your code here
-    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w(?= )|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+'
+    % same regular expression as in assignment 1 with minor modification
+    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w(?= )|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
     outSentence = regexp(outSentence, reg, 'match'); 
    case 'f'
     % TODO: your code 
-    % add more ciriteria
+    % same regular expression as in assignment 1 with minor modification
     reg = 'l''|qu''|\w+''(?=on)|\w+''(?=il)|\w''|[0-9,]+[0-9]+\.[0-9]+|(\w\.)+|\w+|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
-    reg = ['d''aboard|d''accord|d''ailleurs|d''habitude|',reg]
+    reg = ['d''aboard|d''accord|d''ailleurs|d''habitude|',reg];
     outSentence = regexp(outSentence, reg, 'match');
   end
 

@@ -45,6 +45,7 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   end
 
   words = strsplit(' ', sentence);
+  words = words(2:length(words)-1);
 
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
@@ -53,25 +54,31 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   names = fieldnames(LM.uni);
   total_word_count = 0;
 
-
+  % count the toltal number of word
   for i=1:length(names)
-    total_word_count = total_word_num + LM.uni.(names{i});
+    total_word_count = total_word_count + LM.uni.(names{i});
   end 
 
 
-  %initialize the probability
-  probability = (LM.uni.(words{1})+delta)/(total_word_count)+vocabSize;
 
-  for j=2:length(words)
-    w_1 = words{j-1}
-    w_2 = words{j}
-    if isfield(LM.bi.(w_1),w_2)==1
-      probability = probability * (LM.bi.(w2)/LM.uni.(w2));
-    else
-      probability = 0;
-      break;
+  if isfield(LM.uni,words{1})==1
+    % initialize the probability if the first word is in our language model
+    % otherwise, set the probability to 0
+    probability = (LM.uni.(words{1})+delta)/((total_word_count)+vocabSize);
+    for j=2:length(words)
+      w_1 = words{j-1};
+      w_2 = words{j};
+      if isfield(LM.bi.(w_1),w_2)==1
+        probability = probability * (LM.bi.(w_1).(w_2)/LM.uni.(w_2));
+      else
+        probability = 0;
+        break;
+      end
     end
+  else
+    probability = 0;  
   end
 
   logProb = log2(probability);
+  return
   
