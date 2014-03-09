@@ -16,12 +16,9 @@ function outSentence = preprocess( inSentence, language )
 %       outSentence    : (string) the modified sentence
 %
 %  Template (c) 2011 Frank Rudzicz 
-
+  csc401_a2_defns
   global CSC401_A2_DEFNS
   
-  % just to make the script work
-  csc401_a2_defns
-
   % first, convert the input sentence to lower-case and add sentence marks 
   inSentence = [CSC401_A2_DEFNS.SENTSTART ' ' lower( inSentence ) ' ' CSC401_A2_DEFNS.SENTEND];
 
@@ -31,27 +28,32 @@ function outSentence = preprocess( inSentence, language )
   % initialize outSentence
   outSentence = inSentence;
 
-  
-
   % perform language-agnostic changes
   % TODO: your code here
   %    e.g., outSentence = regexprep( outSentence, 'TODO', 'TODO');
-
+  outSentence = regexprep( outSentence, '[\*\-\+\=\,\.\?\!:;"`\(\)\[\]/\$\%\&<>](\s)?',' $1 ');
+  
   switch language
    case 'e'
-    % TODO: your code here
-    % same regular expression as in assignment 1 with minor modification
-    reg = 'n''t|''ll|[0-9,]+[0-9]+\.[0-9]+|\w+(?=n''t)|\w+|''\w(?= )|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
-    outSentence = regexp(outSentence, reg, 'match'); 
+    % handle clitics
+    outSentence = regexprep( outSentence, '(\w+?)(n{0,1}\''\w*)', '$1 $2');
+
    case 'f'
-    % TODO: your code 
-    % same regular expression as in assignment 1 with minor modification
-    reg = 'l''|qu''|\w+''(?=on)|\w+''(?=il)|\w''|[0-9,]+[0-9]+\.[0-9]+|(\w\.)+|\w+|[\.?!]+|[\*,&;:$\-\+()%<>]|[''\\"]+';
-    reg = ['d''aboard|d''accord|d''ailleurs|d''habitude|',reg];
-    outSentence = regexp(outSentence, reg, 'match');
+    % handle singular definite article
+    outSentence = regexprep( outSentence, '(\bl\'')(\w+)', '$1 $2');
+    
+    % handle single-consonant words ending in e-'muet', except for words
+    % d'accord, d'abord, d'ailleurs and d'habitude
+    outSentence = regexprep(outSentence, '(?!(d''accord|d''abord|d''ailleurs|d''habitude))(\w\'')(\w+)', '$1 $2');
+    
+    % handle que
+    outSentence = regexprep( outSentence, '(qu\'')(\w+)', '$1 $2');
+    
+    % handle conjunctions
+    outSentence = regexprep( outSentence, '(\w+\'')(on|il)', '$1 $2');
   end
+  outSentence = regexprep( outSentence, '\s+', ' ');
 
   % change unpleasant characters to codes that can be keys in dictionaries
   outSentence = convertSymbols( outSentence );
-  outSentence = sprintf('%s ' ,outSentence{:});
-  outSentence = strtrim(outSentence);
+

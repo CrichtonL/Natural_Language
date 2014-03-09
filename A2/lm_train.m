@@ -52,16 +52,22 @@ for iFile=1:length(DD)
     	word = words{w};
     	next_word = words{w+1};
 
-    	if isfield(LM.uni,word) == 1   		
+    	if isfield(LM.uni,word)    		
     		LM.uni.(word) = LM.uni.(word) + 1;
-    		if isfield(LM.bi.(word),next_word) == 1;
-    			LM.bi.(word).(next_word) = LM.bi.(word).(next_word) + 1;
-    		end
-    	else
-    		LM.uni.(word) = 1;
-    		LM.bi.(word) = struct();
-    		LM.bi.(word).(next_word) = 1;
-    	end
+        else
+            LM.uni.(word) = 1;
+        end
+            
+    	if isfield(LM.bi, word)
+            if isfield(LM.bi.(word),next_word)
+                LM.bi.(word).(next_word) = LM.bi.(word).(next_word) + 1;
+            else
+                LM.bi.(word).(next_word) = 1
+            end
+        else
+            LM.bi.(word) = struct();
+            LM.bi.(word).(next_word) = 1;
+        end
     end
 
     % process the last one

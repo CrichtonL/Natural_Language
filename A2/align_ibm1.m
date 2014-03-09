@@ -119,8 +119,8 @@ function AM = initialize(eng, fre)
     %english_words = english(2:length(english_words)-1);
     french_words = fre{l};
     %french_words = french_words(2:length(french_words)-1);
-    num_unique_eng_words = num_unique_words(english_words);
-    num_unique_fr_words = num_unique_words(french_words);
+    num_unique_eng_words = length(unique(english_words));
+    num_unique_fr_words =  length(unique(french_words));
     for w_e =2:length(english_words)-1
 
       e_word = english_words{w_e};
@@ -142,7 +142,7 @@ function AM = initialize(eng, fre)
 
 end
 
-
+function t = em_step(t, eng, fre)
 % 
 % One step in the EM algorithm.
 %
@@ -151,7 +151,6 @@ end
 
   total = {};
   tcount = {};
-
 
   e_fieldnames = fieldnames(t);
   % initialize tcount and total
@@ -196,6 +195,6 @@ end
         f = f_fieldnames{j};
         t.(e).(f) = tcount.(e).(f) / total.(e);
       end
-  end
-  
+  end 
+
 end
