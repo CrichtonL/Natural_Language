@@ -35,6 +35,7 @@ LM.bi = struct();
 SENTSTARTMARK = 'SENTSTART'; 
 SENTENDMARK = 'SENTEND';
 
+%remember to change it back on cdf from *. to *
 DD = dir( [ dataDir, filesep, '*.', language] );
 
 disp([ dataDir, filesep, '*.', language] );
@@ -62,8 +63,9 @@ for iFile=1:length(DD)
     		LM.bi.(word).(next_word) = 1;
     	end
     end
+
     % process the last one
-    if isfield(LM.uni,words{1,length(words)}) == 1   		
+    if isfield(LM.uni,words{length(words)}) == 1   		
     	LM.uni.(words{length(words)}) = LM.uni.(words{length(words)}) + 1;
     else
     	LM.uni.(words{length(words)}) = 1;

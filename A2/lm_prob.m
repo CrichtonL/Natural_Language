@@ -44,8 +44,8 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
     return;
   end
 
-  words = strsplit(' ', sentence)
-  %words = words(2:length(words)-1);
+  words = strsplit(' ', sentence);
+  
 
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
@@ -53,32 +53,36 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   %have not considered smoothing
   names = fieldnames(LM.uni);
   total_word_count = 0;
-
-  % count the toltal number of word
-  for i=1:length(names)
-    total_word_count = total_word_count + LM.uni.(names{i});
-  end 
-
-
-
-  if isfield(LM.uni,words{1})==1
-    % initialize the probability if the first word is in our language model
-    % otherwise, set the probability to 0
-    probability = (LM.uni.(words{1})+delta)/((total_word_count)+vocabSize);
-    for j=2:length(words)
+    
+  probability = 1;
+  for j=2:length(words)-1
       w_1 = words{j-1};
-      w_2 = words{j};
-      if isfield(LM.bi.(w_1),w_2)==1
-        probability = probability * (LM.bi.(w_1).(w_2)/LM.uni.(w_2));
+      if isfield(LM.uni,w_1)
+          w_2 = words{j};
+          denom = LM.uni.(w_1) + delta*vocabSize;
+          if isfield(LM.bi.(w_1),w_2)==1
+            nom = LM.bi.(w_1).(w_2) + delta;
+            probability = probability * nom / denom;
+          elseif delta ~= 0
+            % smooth is specified
+            nom = delta;
+            probability = probability * nom / denom;
+          else
+            % smooth is not specified, logProb should be -Inf
+            return
+          end
+      elseif delta ~= 0
+        % smooth is specified
+        nom = delta;
+        denom = delta*vocabSize;
+        probability = probability * nom / denom;
       else
-        probability = 0;
-        break;
+        return
       end
-    end
-  else
-    probability = 0;  
   end
 
+
   logProb = log2(probability);
+
   return
   
