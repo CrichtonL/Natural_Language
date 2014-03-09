@@ -1,1 +1,9 @@
 Without smoothing, based on the trained bi-gram language model. Many sentense in the test data get zero probability.  
+
+
+smoothing:
+
+delta 0.1
+e: 54.4383
+f: 57.7253
+

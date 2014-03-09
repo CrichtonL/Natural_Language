@@ -135,7 +135,6 @@ function AM = initialize(eng, fre)
           end
       end
   end
-
 end
 
 function t = em_step(t, eng, fre)

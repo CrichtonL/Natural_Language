@@ -51,10 +51,8 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
   
   %have not considered smoothing
-  names = fieldnames(LM.uni);
-  total_word_count = 0;
     
-  probability = 1;
+  logProb = 0;
   for j=2:length(words)-1
       w_1 = words{j-1};
       if isfield(LM.uni,w_1)
@@ -62,27 +60,25 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
           denom = LM.uni.(w_1) + delta*vocabSize;
           if isfield(LM.bi.(w_1),w_2)==1
             nom = LM.bi.(w_1).(w_2) + delta;
-            probability = probability * nom / denom;
+            logProb = logProb + log2(nom / denom);
           elseif delta ~= 0
             % smooth is specified
             nom = delta;
-            probability = probability * nom / denom;
+            logProb = logProb + log2(nom / denom);
           else
             % smooth is not specified, logProb should be -Inf
+            logProb = -Inf;
             return
           end
       elseif delta ~= 0
         % smooth is specified
         nom = delta;
         denom = delta*vocabSize;
-        probability = probability * nom / denom;
+        logProb = logProb + log2(nom / denom);
       else
+        logProb = -Inf;
         return
       end
   end
-
-
-  logProb = log2(probability);
-
   return
   

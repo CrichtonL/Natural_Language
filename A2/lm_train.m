@@ -62,7 +62,7 @@ for iFile=1:length(DD)
             if isfield(LM.bi.(word),next_word)
                 LM.bi.(word).(next_word) = LM.bi.(word).(next_word) + 1;
             else
-                LM.bi.(word).(next_word) = 1
+                LM.bi.(word).(next_word) = 1;
             end
         else
             LM.bi.(word) = struct();

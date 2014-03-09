@@ -37,9 +37,8 @@ for iFile=1:length(DD)
       N = N + length(words);
     end
   end
-  pp
-  N
 end
 
 pp = 2^(-pp/N);
+fprintf('Delta %f, PP: %f\n',delta,pp);
 return
