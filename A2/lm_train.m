@@ -71,7 +71,7 @@ for iFile=1:length(DD)
     end
 
     % process the last one
-    if isfield(LM.uni,words{length(words)}) == 1   		
+    if isfield(LM.uni,words{length(words)})		
     	LM.uni.(words{length(words)}) = LM.uni.(words{length(words)}) + 1;
     else
     	LM.uni.(words{length(words)}) = 1;
