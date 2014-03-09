@@ -1,0 +1,1 @@
+Without smoothing, based on the trained bi-gram language model. Many sentense in the test data get zero probability.  
