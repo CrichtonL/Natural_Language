@@ -59,7 +59,7 @@ function AM = align_ibm1(trainDir, numSentences, maxIter, fn_AM)
 %
 % --------------------------------------------------------------------------------
 
-function [eng, fre] = read_hansard(dir, numSentences)
+function [eng, fre] = read_hansard(dataDir, numSentences)
 %
 % Read 'numSentences' parallel sentences from texts in the 'dir' directory.
 %
@@ -77,22 +77,26 @@ function [eng, fre] = read_hansard(dir, numSentences)
 
   % TODO: your code goes here.
 
-  DD_f = dir( [ dir, filesep, '*.', 'f'] );
-  DD_e = dir( [ dir, filesep, '*.', 'e'] );
+  DD_f = dir( [ dataDir, filesep, '*.', 'f'] );
+  DD_e = dir( [ dataDir, filesep, '*.', 'e'] );
 
-  disp([ dir, filesep, '*.', language] );
   % DD_f and DD_e should have the same length
+  total_sentense_num = 0;
   for iFile=1:length(DD_f)
     DD_e(iFile).name
     DD_f(iFile).name
-    e_lines = textread([dir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
-    f_lines = textread([dir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
+    e_lines = textread([dataDir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
+    f_lines = textread([dataDir, filesep,DD_f(iFile).name], '%s','delimiter','\n');
 
-    for l=1:numSentences
+    for l=1:length(e_lines)
+      if total_sentense_num == numSentences
+        break
+      end
       english_sentence = e_lines{l};
       french_sentence = f_lines{l};
-      eng{i} = strsplit(' ', preprocess(english_sentence, 'e'));
-      fre{i} = strsplit(' ', preprocess(french_sentence, 'f'));
+      eng{total_sentense_num+1} = strsplit(' ', preprocess(english_sentence, 'e'));
+      fre{total_sentense_num+1} = strsplit(' ', preprocess(french_sentence, 'f'));
+      total_sentense_num = total_sentense_num + 1;
     end
   end
 
@@ -126,15 +130,13 @@ function AM = initialize(eng, fre)
       end
 
       for w_f=2:length(french_words)-1
-
         f_word = french_words{w_f};
-
         if isfield(AM.(e_word),f_word) ~= 1
            AM.(e_word).(f_word) = 1 / num_unique_fr_words;
         end
-
-        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words)%ingnore SENTSTART and SENTEND
+        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ingnore SENTSTART and SENTEND
       end
+
     end
   end
 
@@ -149,7 +151,7 @@ function num_u = num_unique_words(words)
   num_u = 0;
   for w=2:length(words)-1
     word = words{w};
-    if isfield(wc,f_word) ~= 1
+    if isfield(wc,word) ~= 1
       wc.(word) = 1;
       num_u = num_u  + 1;
     end
@@ -164,7 +166,7 @@ function wc = count_unique_word(words)
   wc = {};
   for w=2:length(words)-1
     word = words{w};
-    if isfield(wc,f_word) ~= 1
+    if isfield(wc,word) ~= 1
       wc.(word) = 1;
     end
     wc.(word) = wc.(word) + 1;
@@ -192,7 +194,7 @@ function t = em_step(t, eng, fre)
     tcount.(e) = {};
     f_fieldnames = fieldnames(t.(e));
     for j=1:length(f_fieldnames)
-      tcount.(e).(f_fieldnames(j)) = 0;
+      tcount.(e).(f_fieldnames{j}) = 0;
     end
   end
 
@@ -202,19 +204,20 @@ function t = em_step(t, eng, fre)
     wc_e = count_unique_word(english_words);
     wc_f = count_unique_word(french_words);
     % struct to keep track of 
-    f_history = {};
-    e_history = {};
+
     for w_f=2:length(french_words)-1
         f_word = french_words{w_f};
         if isfield(f_history,f_word) ~= 1
           % record history
           f_history.(f_word) = 1;
+          fieldnames(f_history)
           denom_c = 0;
           for w_e=2:length(english_words)-1
             e_word = english_words{w_e};
             if isfield(e_history,e_word) ~= 1
               e_history.(e_word) = 1;
-              denom_c = denom_c + t.(e_word).(f_word) * wc_f.(f_word);
+              fieldnames(e_history)
+              denom_c = denom_c + t.(e_word).(f_word) * wc_f.(f_word)
             end
           end
           % clear history
@@ -238,7 +241,7 @@ function t = em_step(t, eng, fre)
     e = e_fieldnames{i};
     f_fieldnames = fieldnames(t.(e));
     for j=1:length(f_fieldnames)
-      f = f_fieldnames(j);
+      f = f_fieldnames{j};
       t.(e).(f) = tcount.(e).(f) / total.(e);
     end
   end

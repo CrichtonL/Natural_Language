@@ -44,8 +44,8 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
     return;
   end
 
-  words = strsplit(' ', sentence);
-  words = words(2:length(words)-1);
+  words = strsplit(' ', sentence)
+  %words = words(2:length(words)-1);
 
   % TODO: the student implements the following
   % TODO: once upon a time there was a curmudgeonly orangutan named Jub-Jub.
