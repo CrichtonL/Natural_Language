@@ -115,29 +115,25 @@ function AM = initialize(eng, fre)
   AM.SENTEND.SENTEND = 1;
 
   for l=1:length(eng)
-    english_words = eng{l};
-    %english_words = english(2:length(english_words)-1);
-    french_words = fre{l};
-    %french_words = french_words(2:length(french_words)-1);
-    num_unique_eng_words = length(unique(english_words));
-    num_unique_fr_words =  length(unique(french_words));
-    for w_e =2:length(english_words)-1
-
-      e_word = english_words{w_e};
-
-      if isfield(AM,e_word) ~= 1
-        AM.(e_word) = {};
+      english_words = eng{l};
+      %english_words = english(2:length(english_words)-1);
+      french_words = fre{l};
+      %french_words = french_words(2:length(french_words)-1);
+      num_unique_eng_words = length(unique(english_words));
+      num_unique_fr_words =  length(unique(french_words));
+      for w_e =2:length(english_words)-1
+          e_word = english_words{w_e};
+          if isfield(AM,e_word) ~= 1
+            AM.(e_word) = {};
+          end
+          for w_f=2:length(french_words)-1
+              f_word = french_words{w_f};
+              if isfield(AM.(e_word),f_word) ~= 1
+                 AM.(e_word).(f_word) = 1 / num_unique_fr_words;
+              end
+              AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ingnore SENTSTART and SENTEND
+          end
       end
-
-      for w_f=2:length(french_words)-1
-        f_word = french_words{w_f};
-        if isfield(AM.(e_word),f_word) ~= 1
-           AM.(e_word).(f_word) = 1 / num_unique_fr_words;
-        end
-        AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ingnore SENTSTART and SENTEND
-      end
-
-    end
   end
 
 end
@@ -171,7 +167,6 @@ function t = em_step(t, eng, fre)
       wc_f = count_unique_word(french_words);
       % struct to keep track of 
       for w_f=2:length(french_words)-1
-          fieldnames(f_history)
           denom_c = 0;
           for w_e=2:length(english_words)-1
             e_word = english_words{w_e};
