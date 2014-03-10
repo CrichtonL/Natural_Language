@@ -19,7 +19,7 @@ function pp = perplexity( LM, testDir, language, type, delta )
 
 global CSC401_A2_DEFNS
 
-DD        = dir( [ testDir, filesep, '*', language] )
+DD        = dir( [ testDir, filesep, '*', language] );
 pp        = 0;
 N         = 0;
 vocabSize = length(fieldnames(LM.uni));
@@ -40,5 +40,5 @@ for iFile=1:length(DD)
 end
 
 pp = 2^(-pp/N);
-fprintf('Delta %f, PP: %f\n',delta,pp);
+fprintf('Delta %f, PP: %f, LANGUAGE: %s\n',delta,pp,language);
 return
