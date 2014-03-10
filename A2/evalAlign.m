@@ -66,14 +66,14 @@ for fn=1:4
         len = min(length(correct_answer),length(translate_result));
 
 
-        for j=1:length(f_lines)
+        for j=1:len
             if ~isempty(find(ismember(translate_result, correct_answer{j})))
                 num_correct_word = num_correct_word + 1;
             end    
             % check to see if the ranslated world is at a resonable position
             start_pos = max(1,j-def);
             end_pos = min(j+def,len);
-            result_part = translate_result(start_pos:end_pos)
+            result_part = translate_result(start_pos:end_pos);
             pos = find(strcmp(result_part, correct_answer{j}));
             if ~isempty(pos)
                 num_correct_pos_and_word = num_correct_pos_and_word + 1;       
