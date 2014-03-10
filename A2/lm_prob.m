@@ -56,9 +56,12 @@ function logProb = lm_prob(sentence, LM, type, delta, vocabSize)
   for j=2:length(words)-1
       w_1 = words{j-1};
       if isfield(LM.uni,w_1)
+          % w_2 is the next word adjacent to w_1
           w_2 = words{j};
+          % setting the denom
           denom = LM.uni.(w_1) + delta*vocabSize;
           if isfield(LM.bi.(w_1),w_2)==1
+            % setting the norm
             nom = LM.bi.(w_1).(w_2) + delta;
             logProb = logProb + log2(nom / denom);
           elseif delta ~= 0

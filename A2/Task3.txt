@@ -1,4 +1,9 @@
-Without smoothing, based on the trained bi-gram language model. Many sentense in the test data get zero probability.  
+Based on the trained bi-gram language model.
+Many sentense in the test data get a negative 
+infinitive log probability without doing somoothing.  
+
+The following data shows the relationship between the values of perplexity
+and delta when smoothing is specified.
 
 Delta 0.010000, PP: 38.767980, LANGUAGE: e
 Delta 0.010000, PP: 38.058832, LANGUAGE: f
@@ -16,4 +21,10 @@ Delta 1.000000, PP: 114.458758, LANGUAGE: e
 Delta 1.000000, PP: 133.713298, LANGUAGE: f
 
 
+From the collected data, we can observe that the perplexity 
+is increasing with the delta. This is expected because the log probabilities of the majority
+of the sentenses in the testing data are larger than negative infinite.
+
+Smoothing the probability will decrease the log probabilities of majority of the sentenses.
+Therefore, the overall perplexity will increase.
 
