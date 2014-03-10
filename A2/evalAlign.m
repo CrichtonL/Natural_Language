@@ -54,12 +54,12 @@ for fn=1:4
     num_correct_word = 0;
     num_correct_pos_and_word = 0;
 
-    for i=1:length(f_lines)
+    for i=1:5%length(f_lines)
         correct_answer = strsplit(' ', eng{i});
         translate_result = translated_eng{i};
         %trim sentstart and sentend
         correct_answer = correct_answer(2:length(correct_answer)-1);
-        translate_result = translate_result(2:length(correct_answer)-1);
+        translate_result = translate_result(2:length(translate_result)-1);
         % if the position of the translated word is within def from the position it should to be
         % this translated word is considered as in the correct position.
         def = abs(length(correct_answer) - length(translate_result));
