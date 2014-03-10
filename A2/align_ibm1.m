@@ -166,20 +166,26 @@ function t = em_step(t, eng, fre)
 
   % calculate total and tcount
   for l=1:length(eng)
-      english_words = eng{l};
-      french_words = fre{l};
-      for w_f=2:length(french_words)-1
+      eng{l}
+      english_words = eng{l}(2:length(eng{l})-1)
+      fre{l}
+      french_words = fre{l}(2:length(fre{l})-1)
+      [u_e,e_ia,e_ic] = unique(english_words);
+      [u_f,f_ia,f_ic] = unique(french_words);
+      f_count = histc(f_ic,1:length(f_ia))
+      e_count = histc(e_ic,1:length(e_ia))
+      for w_f=1:length(u_f)
           denom_c = 0;
-          f_word = french_words{w_f};
-          for w_e=2:length(english_words)-1
-            e_word = english_words{w_e};
-            denom_c = denom_c + t.(e_word).(f_word);
+          f_word = u_f{w_f};
+          for w_e=1:length(u_e)
+            e_word = u_e{w_e};
+            denom_c = denom_c + t.(e_word).(f_word)*f_count(w_f);
           end
 
-          for w_e=2:length(english_words)-1
-            e_word = english_words{w_e};
-            tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) / denom_c;
-            total.(e_word) =  total.(e_word) + t.(e_word).(f_word) / denom_c;
+          for w_e=1:length(u_e)
+            e_word = u_e{w_e};
+            tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) * f_count(w_f) * e_count(w_e)/ denom_c;
+            total.(e_word) =  total.(e_word) + t.(e_word).(f_word) * f_count(w_f) * e_count(w_e)/ denom_c;
           end
       end
   end

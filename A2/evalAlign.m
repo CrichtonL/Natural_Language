@@ -35,9 +35,9 @@ for i=1:length(f_lines)
 end
 
 
-for fn=1:4
+for fn=1:1%4
     CUR_AM = fn_AM{fn}
-    AMFE = load(CUR_AM);
+    AMFE = load('am.mat');
     AMFE = AMFE.AM;
     for j=1:length(f_lines)
         % Decode the test sentence 'fre'
