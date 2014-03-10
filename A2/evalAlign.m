@@ -14,7 +14,7 @@ delta        = 0.01;
 vocabSize    = 0;
 numSentences = {1000,10000,15000,30000};
 %alignment model
-fn_AM = {'NEW_AM_1000_40.mat', 'NEW_AM_10000_40.mat', 'NEW_AM_15000_40.mat', 'NEW_AM_30000_40.mat'};
+fn_AM = {'am.mat', 'NEW_AM_10000_40.mat', 'NEW_AM_15000_40.mat', 'NEW_AM_30000_40.mat'};
 
 % Train your language models. This is task 2 which makes use of task 1
 LME = load('LM_ENG.mat');
@@ -35,7 +35,7 @@ for i=1:length(f_lines)
 end
 
 
-for fn=1:1%4
+for fn=1:4
     CUR_AM = fn_AM{fn}
     AMFE = load('am.mat');
     AMFE = AMFE.AM;
@@ -70,7 +70,7 @@ for fn=1:1%4
             if ~isempty(find(ismember(translate_result, correct_answer{j})))
                 num_correct_word = num_correct_word + 1;
             end    
-            % check to see if the ranslated world is at a resonable position
+            % check to see if the ranslated word is at a resonable position
             start_pos = max(1,j-def);
             end_pos = min(j+def,len);
             result_part = translate_result(start_pos:end_pos);
