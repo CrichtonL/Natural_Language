@@ -14,7 +14,7 @@ delta        = 0.01;
 vocabSize    = 0;
 numSentences = {1000,10000,15000,30000};
 %alignment model
-fn_AM = {'AM_1000_40.mat', 'AM_10000_40.mat', 'AM_15000_40.mat', 'AM_30000_40.mat'};
+fn_AM = {'NEW_AM_1000_40.mat', 'NEW_AM_10000_40.mat', 'NEW_AM_15000_40.mat', 'NEW_AM_30000_40.mat'};
 
 % Train your language models. This is task 2 which makes use of task 1
 LME = load('LM_ENG.mat');
@@ -39,7 +39,7 @@ end
 for i=1:1%1:length(numSentences)
     % Train your alignment model of French, given English 
     %AMFE = align_ibm1( trainDir, numSentences{i} , 50, 'am.mat');
-    AMFE = load('AM_30000_40.mat');
+    AMFE = load('NEW_AM_15000_40.mat');
     AMFE = AMFE.AM;
     % 
     for j=1:length(f_lines)

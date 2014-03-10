@@ -83,19 +83,21 @@ function [eng, fre] = read_hansard(dataDir, numSentences)
   % DD_f and DD_e should have the same length
   total_sentense_num = 0;
   for iFile=1:length(DD_f)
-    e_lines = textread([dataDir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
-    f_lines = textread([dataDir, filesep,DD_f(iFile).name], '%s','delimiter','\n');
-
-    for l=1:length(e_lines)
+      e_lines = textread([dataDir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
+      f_lines = textread([dataDir, filesep,DD_f(iFile).name], '%s','delimiter','\n');
       if total_sentense_num == numSentences
-        break
+          break
       end
-      english_sentence = e_lines{l};
-      french_sentence = f_lines{l};
-      eng{total_sentense_num+1} = strsplit(' ', preprocess(english_sentence, 'e'));
-      fre{total_sentense_num+1} = strsplit(' ', preprocess(french_sentence, 'f'));
-      total_sentense_num = total_sentense_num + 1;
-    end
+      for l=1:length(e_lines)
+          if total_sentense_num == numSentences
+              break
+          end
+          english_sentence = e_lines{l};
+          french_sentence = f_lines{l};
+          eng{total_sentense_num+1} = strsplit(' ', preprocess(english_sentence, 'e'));
+          fre{total_sentense_num+1} = strsplit(' ', preprocess(french_sentence, 'f'));
+          total_sentense_num = total_sentense_num + 1;
+      end
   end
 
 end
@@ -109,6 +111,7 @@ function AM = initialize(eng, fre)
 % TODO: your code goes here
   AM = {}; % AM.(english_word).(foreign_word)
 
+  %SENTSTART should only be translated to SENTSTART
   AM.SENTSTART.SENTSTART = 1;
   AM.SENTEND.SENTEND = 1;
 
@@ -121,15 +124,23 @@ function AM = initialize(eng, fre)
           if ~isfield(AM,e_word)
             AM.(e_word) = {};
           end
+
+          % hard code the alignment for SENTSTAR and SENTEND for 
+          % each AM.(e_word)
+          AM.(e_word).SENTSTART = 0;
+          AM.(e_word).SENTEND = 0;
+
+          %ignore SENTSTART and SENTEND
           for w_f=2:length(french_words)-1
               f_word = french_words{w_f};
               if ~isfield(AM.(e_word),f_word)
                  AM.(e_word).(f_word) = 1 / num_unique_fr_words;
               end
-              AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ignore SENTSTART and SENTEND
+              AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);
           end
       end
   end
+
 end
 
 function t = em_step(t, eng, fre)
@@ -144,19 +155,19 @@ function t = em_step(t, eng, fre)
 
   % initialize tcount and total
   for i=1:length(E_VOCAB)
-    e = E_VOCAB{i};
-    total.(e) = 0;
-    tcount.(e) = {};
-    f_fieldnames = fieldnames(t.(e));
-    for j=1:length(f_fieldnames)
-      tcount.(e).(f_fieldnames{j}) = 0;
-    end
+      e = E_VOCAB{i};
+      total.(e) = 0;
+      tcount.(e) = {};
+      f_fieldnames = fieldnames(t.(e));
+      for j=1:length(f_fieldnames)
+        tcount.(e).(f_fieldnames{j}) = 0;
+      end
   end
 
+  % calculate total and tcount
   for l=1:length(eng)
       english_words = eng{l};
       french_words = fre{l};
-      % struct to keep track of 
       for w_f=2:length(french_words)-1
           denom_c = 0;
           f_word = french_words{w_f};
@@ -173,10 +184,11 @@ function t = em_step(t, eng, fre)
       end
   end
 
+  % update the AM
   for i=1:length(E_VOCAB)
       e = E_VOCAB{i};
       if ~strcmp(e,'SENTSTART') && ~strcmp(e,'SENTEND')
-        f_fieldnames = fieldnames(t.(e));
+          f_fieldnames = fieldnames(t.(e));
           for j=1:length(f_fieldnames)
               f = f_fieldnames{j};
               if ~strcmp(f,'SENTSTART') && ~strcmp(f,'SENTEND')
