@@ -83,8 +83,6 @@ function [eng, fre] = read_hansard(dataDir, numSentences)
   % DD_f and DD_e should have the same length
   total_sentense_num = 0;
   for iFile=1:length(DD_f)
-    DD_e(iFile).name
-    DD_f(iFile).name
     e_lines = textread([dataDir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
     f_lines = textread([dataDir, filesep,DD_f(iFile).name], '%s','delimiter','\n');
 
@@ -116,25 +114,24 @@ function AM = initialize(eng, fre)
 
   for l=1:length(eng)
       english_words = eng{l};
-      %english_words = english(2:length(english_words)-1);
       french_words = fre{l};
-      %french_words = french_words(2:length(french_words)-1);
-      num_unique_eng_words = length(unique(english_words));
       num_unique_fr_words =  length(unique(french_words));
       for w_e =2:length(english_words)-1
           e_word = english_words{w_e};
-          if isfield(AM,e_word) ~= 1
+          if ~isfield(AM,e_word)
             AM.(e_word) = {};
           end
           for w_f=2:length(french_words)-1
               f_word = french_words{w_f};
-              if isfield(AM.(e_word),f_word) ~= 1
+              if ~isfield(AM.(e_word),f_word)
                  AM.(e_word).(f_word) = 1 / num_unique_fr_words;
               end
-              AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ingnore SENTSTART and SENTEND
+              AM.(e_word).(f_word) = 1 / (1 / AM.(e_word).(f_word) + num_unique_fr_words);%ignore SENTSTART and SENTEND
           end
       end
   end
+
+  length(fieldnames(AM))
 end
 
 function t = em_step(t, eng, fre)
@@ -143,14 +140,13 @@ function t = em_step(t, eng, fre)
 %
   
   % TODO: your code goes here
-
+  E_VOCAB = fieldnames(t);
   total = {};
   tcount = {};
 
-  e_fieldnames = fieldnames(t);
   % initialize tcount and total
-  for i=1:length(e_fieldnames)
-    e = e_fieldnames{i};
+  for i=1:length(E_VOCAB)
+    e = E_VOCAB{i};
     total.(e) = 0;
     tcount.(e) = {};
     f_fieldnames = fieldnames(t.(e));
@@ -162,32 +158,33 @@ function t = em_step(t, eng, fre)
   for l=1:length(eng)
       english_words = eng{l};
       french_words = fre{l};
-      wc_e = count_unique_word(english_words);
-      wc_f = count_unique_word(french_words);
       % struct to keep track of 
       for w_f=2:length(french_words)-1
           denom_c = 0;
+          f_word = french_words{w_f};
           for w_e=2:length(english_words)-1
             e_word = english_words{w_e};
-            denom_c = denom_c + t.(e_word).(f_word) * wc_f.(f_word)
+            denom_c = denom_c + t.(e_word).(f_word);
           end
 
           for w_e=2:length(english_words)-1
             e_word = english_words{w_e};
-            % tcount and total have different value because tcount is added for a unique e_word f_word pair, but 
-            % taotal is added for each unique e for each sentense
-            tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
-            total.(e_word) =  total.(e_word) + t.(e_word).(f_word) * wc_f.(f_word) * wc_e.(e_word) / denom_c;
+            tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) / denom_c;
+            total.(e_word) =  total.(e_word) + t.(e_word).(f_word) / denom_c;
           end
       end
   end
 
-  for i=1:length(e_fieldnames)
-      e = e_fieldnames{i};
-      f_fieldnames = fieldnames(t.(e));
-      for j=1:length(f_fieldnames)
-        f = f_fieldnames{j};
-        t.(e).(f) = tcount.(e).(f) / total.(e);
+  for i=1:length(E_VOCAB)
+      e = E_VOCAB{i};
+      if ~strcmp(e,'SENTSTART') && ~strcmp(e,'SENTEND')
+        f_fieldnames = fieldnames(t.(e));
+          for j=1:length(f_fieldnames)
+              f = f_fieldnames{j};
+              if ~strcmp(f,'SENTSTART') && ~strcmp(f,'SENTEND')
+                t.(e).(f) = tcount.(e).(f) / total.(e);
+              end
+          end
       end
   end 
 
