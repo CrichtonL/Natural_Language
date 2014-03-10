@@ -1,0 +1,4 @@
+in translation
+SENTSTART will shift
+de will be translated to de instead of the 
+la has the same issue

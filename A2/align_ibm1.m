@@ -130,8 +130,6 @@ function AM = initialize(eng, fre)
           end
       end
   end
-
-  length(fieldnames(AM))
 end
 
 function t = em_step(t, eng, fre)

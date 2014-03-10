@@ -1,9 +1,19 @@
 Without smoothing, based on the trained bi-gram language model. Many sentense in the test data get zero probability.  
 
+Delta 0.010000, PP: 38.767980, LANGUAGE: e
+Delta 0.010000, PP: 38.058832, LANGUAGE: f
 
-smoothing:
+Delta 0.100000, PP: 54.438478, LANGUAGE: e
+Delta 0.100000, PP: 57.725297, LANGUAGE: f
 
-delta 0.1
-e: 54.4383
-f: 57.7253
+Delta 0.200000, PP: 65.106538, LANGUAGE: e
+Delta 0.200000, PP: 70.868736, LANGUAGE: f
+
+Delta 0.500000, PP: 87.513442, LANGUAGE: e
+Delta 0.500000, PP: 98.968853, LANGUAGE: f
+
+Delta 1.000000, PP: 114.458758, LANGUAGE: e
+Delta 1.000000, PP: 133.713298, LANGUAGE: f
+
+
 
