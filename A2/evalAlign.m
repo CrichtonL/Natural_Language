@@ -54,7 +54,7 @@ for fn=1:4
     num_correct_word = 0;
     num_correct_pos_and_word = 0;
 
-    for i=1:5%length(f_lines)
+    for i=1:length(f_lines)
         correct_answer = strsplit(' ', eng{i});
         translate_result = translated_eng{i};
         %trim sentstart and sentend
