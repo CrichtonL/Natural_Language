@@ -14,7 +14,7 @@ delta        = 0.01;
 vocabSize    = 0;
 numSentences = {1000,10000,15000,30000};
 %alignment model
-fn_AM = {'am.mat', 'NEW_AM_10000_40.mat', 'NEW_AM_15000_40.mat', 'NEW_AM_30000_40.mat'};
+fn_AM = {'AM_10000_40.mat', 'AM_15000_40.mat', 'AM_30000_40.mat'};
 
 % Train your language models. This is task 2 which makes use of task 1
 LME = load('LM_ENG.mat');
@@ -35,9 +35,9 @@ for i=1:length(f_lines)
 end
 
 
-for fn=1:4
+for fn=1:3
     CUR_AM = fn_AM{fn}
-    AMFE = load('am.mat');
+    AMFE = load(CUR_AM);
     AMFE = AMFE.AM;
     for j=1:length(f_lines)
         % Decode the test sentence 'fre'
