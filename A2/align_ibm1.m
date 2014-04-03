@@ -41,7 +41,7 @@ function AM = align_ibm1(trainDir, numSentences, maxIter, fn_AM)
 
   % Iterate between E and M steps
   for iter=1:maxIter,
-    AM = em_step(AM, eng, fre);
+    AM = em_step(AM, eng, fre,iter);
   end
 
   % Save the alignment model
@@ -83,6 +83,8 @@ function [eng, fre] = read_hansard(dataDir, numSentences)
   % DD_f and DD_e should have the same length
   total_sentense_num = 0;
   for iFile=1:length(DD_f)
+      DD_e(iFile).name
+      DD_f(iFile).name
       e_lines = textread([dataDir, filesep,DD_e(iFile).name], '%s','delimiter','\n');
       f_lines = textread([dataDir, filesep,DD_f(iFile).name], '%s','delimiter','\n');
       if total_sentense_num == numSentences
@@ -99,7 +101,7 @@ function [eng, fre] = read_hansard(dataDir, numSentences)
           total_sentense_num = total_sentense_num + 1;
       end
   end
-
+  total_sentense_num
 end
 
 
@@ -143,7 +145,7 @@ function AM = initialize(eng, fre)
 
 end
 
-function t = em_step(t, eng, fre)
+function t = em_step(t, eng, fre,iter)
 % 
 % One step in the EM algorithm.
 %
@@ -152,7 +154,7 @@ function t = em_step(t, eng, fre)
   E_VOCAB = fieldnames(t);
   total = {};
   tcount = {};
-
+  iter
   % initialize tcount and total
   for i=1:length(E_VOCAB)
       e = E_VOCAB{i};
@@ -166,11 +168,16 @@ function t = em_step(t, eng, fre)
 
   % calculate total and tcount
   for l=1:length(eng)
+<<<<<<< HEAD
       eng{l}
       english_words = eng{l}(2:length(eng{l})-1)
       fre{l}
       french_words = fre{l}(2:length(fre{l})-1)
       % get unique words and their corresponding word count
+=======
+      english_words = eng{l}(2:length(eng{l})-1);
+      french_words = fre{l}(2:length(fre{l})-1);
+>>>>>>> f11d5ae88ab4e53b36dc277eca2aed2f1dfddcb8
       [u_e,e_ia,e_ic] = unique(english_words);
       [u_f,f_ia,f_ic] = unique(french_words);
       f_count = histc(f_ic,1:length(f_ia));

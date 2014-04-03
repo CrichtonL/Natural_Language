@@ -1,21 +1,17 @@
 
 The measure of "coorectly translated word in correct position" is not a good
-measure of the quality of the performance. Because our translator will translate the 
-french sentense into a english sentense with exactly the same length. In the training data, 
-most of French sentenses has a different length from its English translation.
-
+measure of the quality of the performance. Because my translator will translate the 
+French sentense into an English sentense with exactly the same length (without null word). 
+Most of French sentenses has a different length from its correct English translation.
 
 Instead of using "correctly translated word in correct position"
 My evaluation method allow the "correctly translated word" appear within a resonable range from
 the position it should be in the correct translation. e.g. In the correct translation "wow" is the ith
-word of the correct translation. If "wow" is the jth word in our translation and abs(j-i) is less than a 
-certain number, "wow" will be considered to be translated correctly.
+word of the correct translation. If "wow" is the jth word in my translation and abs(j-i) is less than a 
+certain number, "wow" will be considered to be translated correctly. 
 
-
-
-
-From the result we can see that the performance does not improve too much with increasing number of sentenses used 
-in training. Word order is a crucial weakness of our translater. in many cases our translation has a very different
+The performance does not improve too much by increasing the number of sentenses for training AM. 
+Word order is a crucial weakness of my translater. in many cases my translation has a very different
 word order from the correct answer. Due to the limited size of the traning data, some French words in the testing
 sentense never appear in the traning data and get translated in to "UNK".  By further increasing the corpus size,
 improving ordering algorithm or switch N-gram model (N > 2) , a better performance will be achieved.
