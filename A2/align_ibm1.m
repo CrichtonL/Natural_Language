@@ -170,10 +170,11 @@ function t = em_step(t, eng, fre)
       english_words = eng{l}(2:length(eng{l})-1)
       fre{l}
       french_words = fre{l}(2:length(fre{l})-1)
+      % get unique words and their corresponding word count
       [u_e,e_ia,e_ic] = unique(english_words);
       [u_f,f_ia,f_ic] = unique(french_words);
-      f_count = histc(f_ic,1:length(f_ia))
-      e_count = histc(e_ic,1:length(e_ia))
+      f_count = histc(f_ic,1:length(f_ia));
+      e_count = histc(e_ic,1:length(e_ia));
       for w_f=1:length(u_f)
           denom_c = 0;
           f_word = u_f{w_f};
@@ -181,7 +182,7 @@ function t = em_step(t, eng, fre)
             e_word = u_e{w_e};
             denom_c = denom_c + t.(e_word).(f_word)*f_count(w_f);
           end
-
+          %update tcount and total
           for w_e=1:length(u_e)
             e_word = u_e{w_e};
             tcount.(e_word).(f_word) = tcount.(e_word).(f_word) + t.(e_word).(f_word) * f_count(w_f) * e_count(w_e)/ denom_c;

@@ -20,8 +20,8 @@ fn_AM = {'am.mat', 'NEW_AM_10000_40.mat', 'NEW_AM_15000_40.mat', 'NEW_AM_30000_4
 LME = load('LM_ENG.mat');
 LME = LME.LM;
 
-f_lines = textread(['./Testing', filesep, 'Task5.f'], '%s','delimiter','\n');
-e_lines = textread(['./Testing', filesep, 'Task5.e'], '%s','delimiter','\n');
+f_lines = textread([testDir, filesep, 'Task5.f'], '%s','delimiter','\n');
+e_lines = textread([testDir, filesep, 'Task5.e'], '%s','delimiter','\n');
 
 eng = {};
 fre = {};
@@ -35,13 +35,13 @@ for i=1:length(f_lines)
 end
 
 
-for fn=1:4
+for fn=1:1%4
     CUR_AM = fn_AM{fn}
-    AMFE = load('am.mat');
-    AMFE = AMFE.AM;
+    AM = load(CUR_AM);
+    AM = AM.AM;
     for j=1:length(f_lines)
         % Decode the test sentence 'fre'
-        translated_eng{j} = decode( fre{j}, LME, AMFE, '', 0, vocabSize );
+        translated_eng{j} = decode( fre{j}, LME, AM, lm_type, delta, vocabSize );
         fprintf('line #%d \n', j);
         fprintf('%s ', eng{j});
         fprintf('\n')
@@ -51,7 +51,9 @@ for fn=1:4
 
     % compare translated_eng and eng
     total_word_num = 0;
+    % my measure
     num_correct_word = 0;
+    % base_measure
     num_correct_pos_and_word = 0;
 
     for i=1:length(f_lines)
@@ -67,8 +69,8 @@ for fn=1:4
 
 
         for j=1:len
-            if ~isempty(find(ismember(translate_result, correct_answer{j})))
-                num_correct_word = num_correct_word + 1;
+            if strcmp(translate_result{j}, correct_answer{j})
+                num_correct_pos_and_word = num_correct_pos_and_word + 1;
             end    
             % check to see if the ranslated word is at a resonable position
             start_pos = max(1,j-def);
@@ -76,7 +78,7 @@ for fn=1:4
             result_part = translate_result(start_pos:end_pos);
             pos = find(strcmp(result_part, correct_answer{j}));
             if ~isempty(pos)
-                num_correct_pos_and_word = num_correct_pos_and_word + 1;       
+                num_correct_word = num_correct_word + 1;       
             end
                    
         end
