@@ -4,8 +4,100 @@
 		"selected_items":
 		[
 			[
+				"max",
+				"max_iter"
+			],
+			[
+				"file",
+				"fileID"
+			],
+			[
+				"dir",
+				"dir_output"
+			],
+			[
+				"gmm",
+				"gmm_index"
+			],
+			[
+				"li",
+				"likelihood"
+			],
+			[
+				"log",
+				"log"
+			],
+			[
+				"spea",
+				"speaker_i"
+			],
+			[
+				"mc",
+				"mfcc_files"
+			],
+			[
+				"speak",
+				"speakers"
+			],
+			[
+				"mean",
+				"mean_nom"
+			],
+			[
+				"mea",
+				"means"
+			],
+			[
+				"pm",
+				"pms"
+			],
+			[
+				"pn",
+				"pm_denoms"
+			],
+			[
+				"num",
+				"num_speaker"
+			],
+			[
+				"struc",
+				"struct"
+			],
+			[
+				"fi",
+				"filesep"
+			],
+			[
+				"nom",
+				"nom_pm"
+			],
+			[
+				"cov",
+				"cov_matrix"
+			],
+			[
+				"dim",
+				"dim_num"
+			],
+			[
+				"mcc",
+				"mfcc_file"
+			],
+			[
+				"mfcc",
+				"mfcc_files"
+			],
+			[
 				"spe",
-				"specular_component"
+				"speaker_dir"
+			],
+			[
+				"trai",
+				"train_path"
+			],
+			[
+				"tra",
+				"train_path"
 			],
 			[
 				"sp",
@@ -96,10 +188,6 @@
 				"first_word"
 			],
 			[
-				"log",
-				"logProb"
-			],
-			[
 				"total",
 				"total_sentense_num"
 			],
@@ -138,10 +226,6 @@
 			[
 				"englis",
 				"english_word"
-			],
-			[
-				"num",
-				"numSentences"
 			],
 			[
 				"vo",
@@ -412,16 +496,8 @@
 				"test_label"
 			],
 			[
-				"trai",
-				"traini_ids"
-			],
-			[
 				"Tes",
 				"TestLabel"
-			],
-			[
-				"tra",
-				"traini_ids"
 			],
 			[
 				"tr_ima",
@@ -438,48 +514,16 @@
 			[
 				"tr",
 				"tr_labels"
-			],
-			[
-				"va",
-				"val_set"
-			],
-			[
-				"adjust",
-				"adjust_contrast"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
+			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmTrain.m",
 			"settings":
 			{
-				"buffer_size": 3192,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
-			"settings":
-			{
-				"buffer_size": 2463,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
-			"settings":
-			{
-				"buffer_size": 2497,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "mogEM.m",
-			"settings":
-			{
-				"buffer_size": 2491,
+				"buffer_size": 3563,
 				"line_ending": "Unix"
 			}
 		}
@@ -516,6 +560,23 @@
 	},
 	"file_history":
 	[
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/speechdata/Testing/TestingIDs1-15.txt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmClassify.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmTrainZiwei.m",
+		"/Users/haotan/Desktop/school/csc401/csc401-master/A3/gmmClassify.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/preprocess.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/loglikHMM.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/myTrain.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/gmmTrainZiwei.m",
+		"/Users/haotan/Desktop/school/csc401/csc401-master/A3/phoStruct_.mat",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/initHMM.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/trainHMM.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/speechdata/Training/FCJF0/SA1.phn",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/speechdata/Training/FCJF0/SX127.txt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/csc411/mogEM.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmTrain.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A2/generateAM.m",
 		"/Users/haotan/Desktop/Projects/raytracerLinux/partA/REPORT.txt",
@@ -547,10 +608,7 @@
 		"/Applications/XAMPP/xamppfiles/htdocs/wordpress/untitled.html",
 		"/Applications/XAMPP/xamppfiles/htdocs/norman_web/index.html",
 		"/Users/haotan/Desktop/Projects/norman_web/src/index.html",
-		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A2/decode.m",
-		"/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
-		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A2/align_ibm1.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A2/csc401_a2_defns.m",
 		"/Users/haotan/Desktop/Projects/Natural_Language/A2/Training/hansard.36.1.house.debates.100.e",
@@ -628,6 +686,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"gmm",
+			"num_speaker",
+			"data",
+			",:);\n",
+			"wmbm",
+			"pm",
+			"logbm",
 			"key_status",
 			"TODO",
 			"enqueue",
@@ -724,117 +789,31 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
+					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmTrain.m",
 					"settings":
 					{
-						"buffer_size": 3192,
+						"buffer_size": 3563,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								948,
+								948
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 284.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
-					"settings":
-					{
-						"buffer_size": 2463,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 120.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
-					"settings":
-					{
-						"buffer_size": 2497,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 284.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "mogEM.m",
-					"settings":
-					{
-						"buffer_size": 2491,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1019,
-								1020
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 165.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -898,6 +877,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 230.0,
+	"side_bar_width": 407.0,
 	"status_bar_visible": true
 }

@@ -1,6 +1,4 @@
-function gmms = gmmTrain()
-
-% function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
+function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
 % gmmTain
 %
 %  inputs:  dir_train  : a string pointing to the high-level
@@ -17,46 +15,42 @@ function gmms = gmmTrain()
 %                                          is a vector
 %                            gmm.cov     : DxDxM matrix of covariances. 
 %                                          (:,:,i) is for i^th mixture
+	speaker_dir = dir(dir_train);
+	speaker_dir(~[speaker_dir.isdir]) = [];
 
+	gmms = cell(1,30);
+	speakers = cell(1,30);
+	speaker_data = cell(1,30);
+	num_speaker = 1;
 
+	dim_num = 14;
 
-dir_train = './speechdata/Training';
-speaker_dir = dir(dir_train);
-speaker_dir(~[speaker_dir.isdir]) = [];
-
-gmms = cell(1,30);
-speakers = cell(1,30);
-speaker_data = cell(1,30);
-num_speaker = 1;
-
-dim_num = 14;
-
-%collect data
-for i=1:length(speaker_dir)
-	speaker_name = speaker_dir(i).name;
-	if (length(speaker_name) == 5)
-		data = [];
-		file_path = [dir_train,filesep,speaker_name];
-		mfcc_files = dir([file_path,filesep,'*mfcc']);
-	    for j=1:length(mfcc_files)
-	    	file_name = [file_path,filesep,mfcc_files(j).name];
-	        lines = dlmread(file_name);
-	        lines = lines(:,1:dim_num);
-	        data = vertcat(data,lines);
-	    end
-	    speaker_data{num_speaker} = transp(data);
-	    speakers{num_speaker} = speaker_name;
-	    num_speaker = num_speaker + 1;
+	%collect data
+	for i=1:length(speaker_dir)
+		speaker_name = speaker_dir(i).name;
+		if (length(speaker_name) == 5)
+			data = [];
+			file_path = [dir_train,filesep,speaker_name];
+			mfcc_files = dir([file_path,filesep,'*mfcc']);
+		    for j=1:length(mfcc_files)
+		    	file_name = [file_path,filesep,mfcc_files(j).name];
+		        lines = dlmread(file_name);
+		        lines = lines(:,1:dim_num);
+		        data = vertcat(data,lines);
+		    end
+		    speaker_data{num_speaker} = transp(data);
+		    speakers{num_speaker} = speaker_name;
+		    num_speaker = num_speaker + 1;
+		end
 	end
-end
 
 
-for j=1:length(speakers)
-	speakers{j}
- 	gmms{j} = trainGmm(speaker_data{j}, speakers{j}, 100, 0.01, 8);
-end
+	for j=1:length(speakers)
+		speakers{j}
+	 	gmms{j} = trainGmm(speaker_data{j}, speakers{j}, max_iter, epsilon, M);
+	end
 
-save('gmms.mat', 'gmms', '-mat');
+	save('gmms.mat', 'gmms', '-mat');
 
 end
 
@@ -93,17 +87,10 @@ function [L gmm] = EM(data, gmm, M)
 	T = size(data,2);
 	L = 0;
 
-	% bms = zeros(T,M);
-	% pm_noms = zeros(T,M);
-	% pms = zeros(T,M);
-
 	% M-step
     for i=1:M
-
     	mean_vector = gmm.means(:,i);
     	mean_matrix = repmat(mean_vector,1,T);
-
- 
 
     	cov_matrix = gmm.cov(:,:,i);
     	cov_diag = diag(cov_matrix);
@@ -119,7 +106,9 @@ function [L gmm] = EM(data, gmm, M)
     	%weighted probability
     	pm_noms(i,:) = gmm.weights(i) * bm;
     end
+
     L = sum(log(sum(pm_noms)));
+    
     % E-step
     pms = pm_noms ./ repmat(sum(pm_noms,1),M,1);
     total_pm = sum(pms,2);
