@@ -1,0 +1,903 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"spe",
+				"specular_component"
+			],
+			[
+				"sp",
+				"specular_component"
+			],
+			[
+				"New",
+				"NewAcc7"
+			],
+			[
+				"right",
+				"rightEndPos"
+			],
+			[
+				"Y",
+				"Y1"
+			],
+			[
+				"lef",
+				"leftEndPos"
+			],
+			[
+				"B",
+				"Board"
+			],
+			[
+				"MV",
+				"MvList4"
+			],
+			[
+				"M",
+				"MvList3"
+			],
+			[
+				"Mv",
+				"MvList1"
+			],
+			[
+				"tes",
+				"testMoveRow"
+			],
+			[
+				"get",
+				"get_element"
+			],
+			[
+				"S",
+				"State"
+			],
+			[
+				"sco",
+				"score"
+			],
+			[
+				"Sc",
+				"Score"
+			],
+			[
+				"R",
+				"Row"
+			],
+			[
+				"In",
+				"InitialState"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"else",
+				"elseif	elseif"
+			],
+			[
+				"voca",
+				"vocabSize"
+			],
+			[
+				"fir",
+				"first_word"
+			],
+			[
+				"log",
+				"logProb"
+			],
+			[
+				"total",
+				"total_sentense_num"
+			],
+			[
+				"tota",
+				"total_sentense_num"
+			],
+			[
+				"count",
+				"count_unique_word"
+			],
+			[
+				"wor",
+				"words"
+			],
+			[
+				"fre",
+				"french_words"
+			],
+			[
+				"de",
+				"denom_c"
+			],
+			[
+				"w_",
+				"w_e"
+			],
+			[
+				"eng",
+				"english_words"
+			],
+			[
+				"engli",
+				"english_words"
+			],
+			[
+				"englis",
+				"english_word"
+			],
+			[
+				"num",
+				"numSentences"
+			],
+			[
+				"vo",
+				"vocabSize"
+			],
+			[
+				"rec",
+				"record_num"
+			],
+			[
+				"my",
+				"my_buffer"
+			],
+			[
+				"reco",
+				"record_counter"
+			],
+			[
+				"read",
+				"read_len"
+			],
+			[
+				"rea",
+				"read_len"
+			],
+			[
+				"run",
+				"run_length"
+			],
+			[
+				"me",
+				"merge_iterators"
+			],
+			[
+				"bu",
+				"buffer_capacity"
+			],
+			[
+				"in",
+				"input_file"
+			],
+			[
+				"nex",
+				"next"
+			],
+			[
+				"buf",
+				"buf_size"
+			],
+			[
+				"ru",
+				"run_buffer"
+			],
+			[
+				"RCOR",
+				"Record"
+			],
+			[
+				"tag",
+				"tagged_token"
+			],
+			[
+				"num_of",
+				"num_of_sentense"
+			],
+			[
+				"elem",
+				"elem_list"
+			],
+			[
+				"ext",
+				"extra_abbrev_file"
+			],
+			[
+				"abbre",
+				"abbrev_file"
+			],
+			[
+				"str",
+				"strip"
+			],
+			[
+				"sl",
+				"slang_list"
+			],
+			[
+				"slang",
+				"slang_list"
+			],
+			[
+				"sla",
+				"slang_file"
+			],
+			[
+				"open",
+				"open_file"
+			],
+			[
+				"class_",
+				"class_name"
+			],
+			[
+				"ta",
+				"total_len_of_token"
+			],
+			[
+				"avg",
+				"avg_len_of_tokens"
+			],
+			[
+				"FEA",
+				"FEATURES"
+			],
+			[
+				"wh",
+				"whwords_num"
+			],
+			[
+				"pare",
+				"paren_num"
+			],
+			[
+				"cor",
+				"coord_conj"
+			],
+			[
+				"arff",
+				"arff_file"
+			],
+			[
+				"cls",
+				"class_files"
+			],
+			[
+				"cla",
+				"classes"
+			],
+			[
+				"inp",
+				"input_arg"
+			],
+			[
+				"inpu",
+				"input_args"
+			],
+			[
+				"tw",
+				"tweet_file"
+			],
+			[
+				"pro",
+				"proper_nouns"
+			],
+			[
+				"is_com",
+				"is_common_noun"
+			],
+			[
+				"eli",
+				"ellipses_num"
+			],
+			[
+				"dash",
+				"dash_num"
+			],
+			[
+				"comm",
+				"commas_num"
+			],
+			[
+				"is_pa",
+				"is_past_verbs"
+			],
+			[
+				"se",
+				"second_person_pronouns"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"token",
+				"token_list"
+			],
+			[
+				"senten",
+				"sentense_list"
+			],
+			[
+				"W",
+				"WHWORD"
+			],
+			[
+				"page",
+				"page_size"
+			],
+			[
+				"P",
+				"page_size"
+			],
+			[
+				"slot",
+				"slot_size"
+			],
+			[
+				"free",
+				"free_slot_map"
+			],
+			[
+				"mem",
+				"mem_block"
+			],
+			[
+				"pag",
+				"page_file"
+			],
+			[
+				"re",
+				"rec_size"
+			],
+			[
+				"A",
+				"ATTR_LEN"
+			],
+			[
+				"NUM",
+				"NUM_ATTR"
+			],
+			[
+				"pa",
+				"num_pages"
+			],
+			[
+				"nu",
+				"num_records"
+			],
+			[
+				"int",
+				"int_vec"
+			],
+			[
+				"attr",
+				"attr_buf"
+			],
+			[
+				"begi",
+				"begin"
+			],
+			[
+				"fix",
+				"fixed_len_page_capacity"
+			],
+			[
+				"slo",
+				"slot_size"
+			],
+			[
+				"siz",
+				"sizeof"
+			],
+			[
+				"val",
+				"val_label"
+			],
+			[
+				"test",
+				"test_label"
+			],
+			[
+				"trai",
+				"traini_ids"
+			],
+			[
+				"Tes",
+				"TestLabel"
+			],
+			[
+				"tra",
+				"traini_ids"
+			],
+			[
+				"tr_ima",
+				"tr_images"
+			],
+			[
+				"tr_image",
+				"tr_image_vectors"
+			],
+			[
+				"val_ima",
+				"val_image_vectors"
+			],
+			[
+				"tr",
+				"tr_labels"
+			],
+			[
+				"va",
+				"val_set"
+			],
+			[
+				"adjust",
+				"adjust_contrast"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
+			"settings":
+			{
+				"buffer_size": 3192,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
+			"settings":
+			{
+				"buffer_size": 2463,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
+			"settings":
+			{
+				"buffer_size": 2497,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mogEM.m",
+			"settings":
+			{
+				"buffer_size": 2491,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 347.0,
+		"selected_items":
+		[
+			[
+				"Packe",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/haotan/Desktop/Projects/Natural_Language/A3/gmmTrain.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/generateAM.m",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partA/REPORT.txt",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partA/scene_object.h",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partA/README.txt",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partA/CHECKLIST.txt",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partB/game.py",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partB/model.py",
+		"/Users/haotan/Desktop/school/py_minecraft/PyMinecraft-master/window.py",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partB/util.py",
+		"/Users/haotan/Desktop/school/py_minecraft/PyMinecraft-master/main.py",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/partB/cube.py",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/CHECKLIST.txt",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/raytracer.cpp",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/light_source.h",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/light_source.cpp",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/scene_object.cpp",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/util.cpp",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/util.h",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/scene_object.h",
+		"/Users/haotan/Desktop/Projects/raytracerLinux/view1.bmp",
+		"/Users/haotan/Desktop/school/test.pl",
+		"/Applications/XAMPP/xamppfiles/htdocs/norman_web/backup.html",
+		"/Users/haotan/Desktop/school/csc384/othello.pl",
+		"/Applications/XAMPP/xamppfiles/htdocs/businesstoday/styles/navi.css",
+		"/Users/haotan/Desktop/Projects/norman_web/demo/style.css",
+		"/Users/haotan/Desktop/Projects/norman_web/demo/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/norman_web/styles/index.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/wordpress/untitled.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/norman_web/index.html",
+		"/Users/haotan/Desktop/Projects/norman_web/src/index.html",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/decode.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/align_ibm1.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/csc401_a2_defns.m",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/Training/hansard.36.1.house.debates.100.e",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A2/strsplit.m",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/pl2/output",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/Conjunct",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/process_extra_abbrev.py",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/extra_abbrev",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/extra_abbrev.english",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/abbrev.english",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/CBC_test",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/jbbs.arff",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/buildarff.py",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/twtt.py",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/generate_twt_file.py",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/BarackObama.twt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/copy",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/BarackObama",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/KimKardashian.twt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/cnn.twt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/CBCNews.twt",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/justinbieber_revised",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/rihanna",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/cnn",
+		"/Users/haotan/Desktop/Projects/Natural_Language/A1/CBCNews",
+		"/Users/haotan/Desktop/Projects/src/ziwei/library.cc",
+		"/Users/haotan/Desktop/Projects/src/ziwei/library.h",
+		"/Users/haotan/Desktop/Projects/src/ziwei/write_fixed_len_pages.cc",
+		"/Users/haotan/Desktop/Projects/src/library.h",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/Makefile",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/page_file.txt",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/csv_test.txt",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/generate_csv.py",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/test.cc",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/read_fixed_len_pages.cc",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/write_fixed_len_pages.cc",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/library.h",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/library.cc",
+		"/Users/haotan/Desktop/Projects/Dadabase-tech/A1/test.c",
+		"/Users/haotan/Desktop/csc469_a3/server_util.c",
+		"/Users/haotan/Desktop/school/csc411_final_proj/kNN_baseline/baseline.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/get_CE.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/preprocess_data.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/chop_edges.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/experiment.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/ovosvm.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/multisvm.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/cross_validate.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/kNN_baseline/cross_validate.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/load_and_run.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/multisv.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/adjust_contrast.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/pcaimg.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/chop_face.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/pca_projection.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/getMouth.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/chip_index.txt",
+		"/Users/haotan/Desktop/school/csc411_final_proj/pca_project.m",
+		"/Users/haotan/Desktop/school/csc411_final_proj/labeled_data.mat",
+		"/Users/haotan/Desktop/school/kheap.c"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"key_status",
+			"TODO",
+			"enqueue",
+			"_shown",
+			"model",
+			"show_sector",
+			"hide_Block",
+			"normalize",
+			"sectors",
+			"group",
+			"TextureGroup",
+			"TODO",
+			"clamp",
+			" \n",
+			"tie",
+			"play",
+			"header",
+			"topbar",
+			"h2",
+			"br",
+			"50",
+			"h1",
+			"top",
+			"header",
+			"HOME",
+			"locus i",
+			")%",
+			"buf_size",
+			",",
+			"total_Len_",
+			"CC",
+			"e.g.",
+			"it.",
+			"it",
+			"extra_abbrev",
+			"e.g.",
+			"wish i was",
+			"i.e.",
+			"FEATURES",
+			"(",
+			"{",
+			"[{",
+			"[",
+			".",
+			"eg",
+			"	",
+			"LIRR",
+			"lirr",
+			"_",
+			"-",
+			"read_buffer",
+			"record_buffer",
+			"FEDNYOOTPH",
+			"VLBUPBQ",
+			"VLBUPBQKOWUYBJEPFKEWQDUOJZWVYVRVLLTLRYASRWIWCCDRVINZNYDFVHMQJOWHUVOQJJTPOYUFCFYVUEUUVNFXXQWWNGKZCZHQCVJYRCDRLRYSHFDXKFNLHVAVCGQVXUUSOEHKOEKYUQPSKVNVSJWMFEIIYFCJCMVXVKXSVFEFSLXNPRJPFLPIWKEPXWFZAGHVOBSEXZJVARKYUKDWYRYBMUDHMUDNSTNDHJPEMDRVPAJNBLCBQIZQJQEEPSZTSDAUNONUAUICMWINOUKEBAOPGUPUYHMIQEJMSDZHUKHLWJVGTTXSNCIGJITICEPARQNSKIRPCREMNJFOMDSXHBQJJYBZTJKIVGCMSUCBZRUTZKYGBOBLKSQWHQUUBWMPINUOUUCKXYRWQLRWSOPSXOMOOYKQAUXDQSHRXGMZTOEKTCGKANBTWCLZTQPKPMKDQYOYNARDSRTBMVYXGDWFFDEOSSAYRIEMMTIUPFCNNYKVVLLGOSCVRVJBWHHRYVEATJBNFWLXMNTCWHFDRXDLPAIQOMXLISHDXNVVHLBIJNNOSSIKSHYKVIUTQPUOKNAYEPUXWVAKEQCJEIBJCMOOPLOOTTYSCDXEBLAYBCJJKAPZXGPJWJGWEOWESUIRUAMHTPRTGEPUIZXVDMQOTBSASDXMROFDRFEADKHMNTIUZJENGBLVMDJEVPUFGYOOESDBSSYYCJHWFJQLCQGHNRKVRMASFWXWXNVFCKEVLZTLMHIGCNRMFWAWJNUTHHZQGXUCWJEFUTMBSGSNGSVEPMQBECLBVXXECFDRYQENZFZTRHTVBOZDQPZHGDHOVGXULBHZCXOITLKQRVWJKSNSPSTUZOFXHFVJZKGWHWEARFVAOEGNVGTMFRJFITUOSMDRNJVDWUTPRATIPXKDJUPVXLMRLIYUTPQWJOMNVDFVLRKXOUKTMUECVDOEZEOZBABLYVUYYSSSBSJBJJYUMMIQQNMSCDFXKMERKGFEDNYOOTPHUYBJEPFKEWQDUOJZWVYVRVLLWLBUPBQKOW",
+			"FEDNYOOTPH",
+			"WLBUPBQKOW",
+			"last_room",
+			"check_server_status",
+			"udp_socket_fd",
+			"check_server_status",
+			"send_check",
+			"MEMBER_KEEP",
+			"MEMBER",
+			"check_server_status",
+			"ctrl2rcvr_qid",
+			"create_receiver",
+			"handle_chat",
+			"init_TCP",
+			"handle_room_List_req",
+			"build_connection",
+			"build_conec",
+			"room_list",
+			"restart",
+			"start",
+			"handle_register",
+			"gethostbyname",
+			"while",
+			"num_block"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/evalAlign.m",
+					"settings":
+					{
+						"buffer_size": 3192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 284.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_prob.m",
+					"settings":
+					{
+						"buffer_size": 2463,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 120.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/haotan/Desktop/Projects/Natural_Language/A2/lm_train.m",
+					"settings":
+					{
+						"buffer_size": 2497,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 284.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "mogEM.m",
+					"settings":
+					{
+						"buffer_size": 2491,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1019,
+								1020
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 165.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 230.0,
+	"status_bar_visible": true
+}

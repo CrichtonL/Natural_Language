@@ -1,4 +1,6 @@
-function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
+function gmms = gmmTrain()
+
+% function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
 % gmmTain
 %
 %  inputs:  dir_train  : a string pointing to the high-level
@@ -15,3 +17,122 @@ function gmms = gmmTrain( dir_train, max_iter, epsilon, M )
 %                                          is a vector
 %                            gmm.cov     : DxDxM matrix of covariances. 
 %                                          (:,:,i) is for i^th mixture
+
+
+
+dir_train = './speechdata/Training';
+speaker_dir = dir(dir_train);
+speaker_dir(~[speaker_dir.isdir]) = [];
+
+gmms = cell(1,30);
+speakers = cell(1,30);
+speaker_data = cell(1,30);
+num_speaker = 1;
+
+dim_num = 14;
+
+%collect data
+for i=1:length(speaker_dir)
+	speaker_name = speaker_dir(i).name;
+	if (length(speaker_name) == 5)
+		data = [];
+		file_path = [dir_train,filesep,speaker_name];
+		mfcc_files = dir([file_path,filesep,'*mfcc']);
+	    for j=1:length(mfcc_files)
+	    	file_name = [file_path,filesep,mfcc_files(j).name];
+	        lines = dlmread(file_name);
+	        lines = lines(:,1:dim_num);
+	        data = vertcat(data,lines);
+	    end
+	    speaker_data{num_speaker} = transp(data);
+	    speakers{num_speaker} = speaker_name;
+	    num_speaker = num_speaker + 1;
+	end
+end
+
+
+for j=1:length(speakers)
+	speakers{j}
+ 	gmms{j} = trainGmm(speaker_data{j}, speakers{j}, 100, 0.01, 8);
+end
+
+save('gmms.mat', 'gmms', '-mat');
+
+end
+
+function gmm = trainGmm(data, name, max_iter, epsilon, M)
+	%initilize gmm
+	gmm = struct();
+	gmm.name = name;
+	%all gaussian has same wieght in initialization
+	gmm.weights = ones(1,M)/M;
+	%initilize means and covariance to 0 for now
+	gmm.means = zeros(14,M);
+	gmm.cov = zeros(14,14,M);
+	for i=1:M
+		% select a random vector to be the centroid
+		% does not matter which one here during initialization
+	    gmm.means(:,i) = data(:,i);
+	    %initilize covariance, cov(i,j) = 1 iff i = j
+	    gmm.cov(:,:,i) = diag(ones(1,14));    
+	end
+
+	i = 0;
+	prev_L = -Inf;
+	improvement = Inf;
+
+	while (i<=max_iter && improvement>=epsilon)
+	    [L gmm] = EM(data,gmm,M)
+	    improvement = L - prev_L;
+	    prev_L = L;
+	    i = i + 1;
+	end
+end
+
+function [L gmm] = EM(data, gmm, M)
+	T = size(data,2);
+	L = 0;
+
+	% bms = zeros(T,M);
+	% pm_noms = zeros(T,M);
+	% pms = zeros(T,M);
+
+	% M-step
+    for i=1:M
+
+    	mean_vector = gmm.means(:,i);
+    	mean_matrix = repmat(mean_vector,1,T);
+
+ 
+
+    	cov_matrix = gmm.cov(:,:,i);
+    	cov_diag = diag(cov_matrix);
+    	cov_matrix = repmat(cov_diag,1,T);
+    	
+
+    	nom = sum(((data - mean_matrix).^2) ./ cov_matrix,1);
+    	nom = exp(-0.5 * nom);
+    	denom = ((2*pi)^7)*sqrt(prod(cov_diag));
+
+    	% T x 1 matrix for bm
+    	bm = nom / denom;
+    	%weighted probability
+    	pm_noms(i,:) = gmm.weights(i) * bm;
+    end
+    L = sum(log(sum(pm_noms)));
+    % E-step
+    pms = pm_noms ./ repmat(sum(pm_noms,1),M,1);
+    total_pm = sum(pms,2);
+
+
+    gmm.weights = transp(total_pm / T);
+    mean_nom = data * transp(pms);
+    gmm.means = mean_nom ./ repmat(transp(total_pm),14,1);
+    cov_diag = data.^2 * transp(pms) ./ repmat(transp(total_pm),14,1) - gmm.means.^2;
+
+    for i=1:M
+    	gmm.cov(:,:,i) = diag(cov_diag(:,i));
+    end
+
+end
+
