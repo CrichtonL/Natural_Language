@@ -21,7 +21,7 @@ dir_train = './speechdata/Training/';
 DD = dir(dir_train);
 total = struct();
 gmms = cell(1,30);
-for iFile=1:3%length(DD)
+for iFile=1:length(DD)
     if ~(length(DD(iFile).name) == 5)
         continue;
     end
@@ -35,7 +35,7 @@ for iFile=1:3%length(DD)
     total.(DD(iFile).name) = data;
 end
 names = fieldnames(total);
-for i=1:1%length(names)
+for i=1:length(names)
     gmms{i} = trainEM(names(i),total.(char(names(i))),1,100,8);
 end
 end
@@ -56,7 +56,7 @@ i = 1;
 prev_L = -Inf;
 improvement = Inf;
 while (i <= max_iter && improvement >= epsilon)
-    [L gmm] = calcLogProb(input, gmm);
+    [L gmm] = calcLogProb(input, gmm)
     improvement = L - prev_L;
     prev_L = L;
     i = i + 1;

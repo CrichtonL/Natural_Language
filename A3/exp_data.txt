@@ -1,0 +1,8 @@
+Classifcation error rate for phoStruct_4_3_7_30.mat is: 0.404197  0.395073
+Classifcation error rate for phoStruct_4_6_7_30.mat is: 0.417883  0.401460
+Classifcation error rate for phoStruct_8_3_7_30.mat is: 0.402372  0.404197
+Classifcation error rate for phoStruct_8_6_7_30.mat is: 0.415146  0.398723
+Classifcation error rate for phoStruct_4_3_14_30.mat is: 0.478102 0.468066
+Classifcation error rate for phoStruct_4_6_14_30.mat is: 0.478102 0.471715
+Classifcation error rate for phoStruct_8_3_14_30.mat is: 0.467153 0.464416
+Classifcation error rate for phoStruct_8_6_14_30.mat is: 0.411496 0.426095

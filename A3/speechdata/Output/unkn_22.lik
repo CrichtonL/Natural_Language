@@ -1,5 +1,5 @@
-No.1, speaker: FDML0, likelihood: -6547.205240
-No.2, speaker: FSMA0, likelihood: -6919.946363
-No.3, speaker: FECD0, likelihood: -7262.877991
-No.4, speaker: FSAH0, likelihood: -7274.903595
-No.5, speaker: FCJF0, likelihood: -7317.608978
+No.1: speaker: FDML0, likelihood: -6547.205240
+No.2: speaker: FSMA0, likelihood: -6919.946363
+No.3: speaker: FECD0, likelihood: -7262.877991
+No.4: speaker: FSAH0, likelihood: -7274.903595
+No.5: speaker: FCJF0, likelihood: -7317.608978

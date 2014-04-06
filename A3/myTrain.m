@@ -1,12 +1,14 @@
 %myTrain script
-function myTrain(M,Q,D,save_name)
+function myTrain(M,Q,D,max_iter,save_name)
 % myTrain
 %
 %  inputs:   M          : number of Gaussians/mixture (integer)
 %            Q    		: number of hidden states
 %			 D 			: number of dimensions
+%			 max_iter	: max iteration num
+%			 save_name  : filename to save traineed struct
 %
-
+addpath(genpath('./bnt'));
 train_path = './speechdata/Training'
 
 speaker_dir = dir(train_path);
@@ -26,20 +28,20 @@ for i=1:length(speaker_dir)
 
 		%construct matrix of data{i}
 		for f=1:length(mfcc_files)
-			mfcc_file = [speaker_path, filesep, mfcc_files(f).name]
-			phn_file = [speaker_path, filesep, phn_files(f).name]
+			mfcc_file = [speaker_path, filesep, mfcc_files(f).name];
+			phn_file = [speaker_path, filesep, phn_files(f).name];
 			data = dlmread(mfcc_file);
 			data = transpose(data(:,1:D));
 
 			lines = textread(phn_file, '%s','delimiter','\n');
-
+			%size of the data
 			T = size(data,2);
 
 			for l=1:length(lines)
 				words = strsplit(' ', lines{l});
-				start_pos = str2num(words{1})
-				end_pos = str2num(words{2})
-				phone = words{3}
+				start_pos = str2num(words{1});
+				end_pos = str2num(words{2});
+				phone = words{3};
 
 				if strcmp(phone,'h#')
                   phone = 'sil';
@@ -52,10 +54,10 @@ for i=1:length(speaker_dir)
               	end
 
               	%handle the inconsistancy 
-				mfcc_start = start_pos/128 + 1 
-				mfcc_end = min(end_pos/128 + 1,T)
+				mfcc_start = start_pos/128 + 1 ;
+				mfcc_end = min(end_pos/128 + 1,T);
 
-				phone_data = data(:,mfcc_start:mfcc_end)
+				phone_data = data(:,mfcc_start:mfcc_end);
 
 				if isfield(phone_mfcc_dict, phone)
 					cur_seq_num = phone_seq_dict.(phone) + 1;
@@ -77,8 +79,14 @@ end
 %lets train
 phones = fieldnames(phone_seq_dict);
 for p=1:length(phones)
-
+	phone = phones{p};
+	data = phone_mfcc_dict.(phone);
+	HMM = initHMM( data, M, Q, 'kmeans');
+	[HMM,LL] = trainHMM( HMM, data, max_iter) ;
+	phone_hmm_dict.(phone) = HMM
 end
-			
+	
+% Save the data just in case
+save(save_name, 'phone_hmm_dict', '-mat');		
 
 end

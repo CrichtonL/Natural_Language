@@ -1,5 +1,5 @@
-No.1, speaker: MWAR0, likelihood: -4598.552080
-No.2, speaker: MKLW0, likelihood: -4613.430233
-No.3, speaker: MRDD0, likelihood: -4747.430145
-No.4, speaker: MDPK0, likelihood: -4753.338476
-No.5, speaker: MDAC0, likelihood: -4780.582687
+No.1: speaker: MWAR0, likelihood: -4598.552080
+No.2: speaker: MKLW0, likelihood: -4613.430233
+No.3: speaker: MRDD0, likelihood: -4747.430145
+No.4: speaker: MDPK0, likelihood: -4753.338476
+No.5: speaker: MDAC0, likelihood: -4780.582687

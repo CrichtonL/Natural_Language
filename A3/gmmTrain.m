@@ -86,7 +86,6 @@ end
 function [L gmm] = EM(data, gmm, M)
 	T = size(data,2);
 	L = 0;
-
 	% M-step
     for i=1:M
     	mean_vector = gmm.means(:,i);
@@ -96,19 +95,18 @@ function [L gmm] = EM(data, gmm, M)
     	cov_diag = diag(cov_matrix);
     	cov_matrix = repmat(cov_diag,1,T);
     	
-
-    	nom = sum(((data - mean_matrix).^2) ./ cov_matrix,1);
-    	nom = exp(-0.5 * nom);
+    	nom = -0.5*sum(((data - mean_matrix).^2) ./ cov_matrix,1);
+    	nom = exp(nom);
     	denom = ((2*pi)^7)*sqrt(prod(cov_diag));
-
-    	% T x 1 matrix for bm
+    	% 1 x T matrix for bm
     	bm = nom / denom;
     	%weighted probability
     	pm_noms(i,:) = gmm.weights(i) * bm;
+
     end
 
     L = sum(log(sum(pm_noms)));
-    
+
     % E-step
     pms = pm_noms ./ repmat(sum(pm_noms,1),M,1);
     total_pm = sum(pms,2);
@@ -122,6 +120,8 @@ function [L gmm] = EM(data, gmm, M)
     for i=1:M
     	gmm.cov(:,:,i) = diag(cov_diag(:,i));
     end
+
+
 
 end
 
